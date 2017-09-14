@@ -1,0 +1,25 @@
+<% content_for :title do %>
+  Đăng nhập
+<% end %>
+
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal"}, wrapper: :horizontal_form) do |f| %>
+
+  <%= f.input :email %>
+  <%= f.input :password %>
+
+  <% if devise_mapping.rememberable? -%>
+    <div class="col-md-offset-3 col-md-9">
+      <%= f.input :remember_me, as: :boolean %>
+    </div>
+  <% end -%>
+
+  <div class="form-actions">
+    <div class="col-md-offset-3 col-md-9">
+      <%= f.button :submit, 'Đăng nhập', class: "btn-success" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="col-md-offset-3 col-md-9">
+  <%= render "devise/shared/links" %>
+</div>

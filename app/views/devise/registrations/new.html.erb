@@ -1,0 +1,20 @@
+<% content_for :title do %>
+  Đăng ký tài khoản
+<% end %>
+
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-horizontal"}, wrapper: :horizontal_form) do |f| %>
+  <div class="form-body">
+    <%= f.input :email %>
+    <%= f.input :password, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+    <%= f.input :password_confirmation, wrapper_html: {class: 'last'} %>
+  </div>
+  <div class="form-actions">
+    <div class="col-md-offset-3 col-md-9">
+      <%= f.button :submit, 'Đăng ký', class: "btn-success" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="col-md-offset-3 col-md-9">
+  <%= render "devise/shared/links" %>
+</div>

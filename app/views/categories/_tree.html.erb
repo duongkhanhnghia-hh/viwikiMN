@@ -1,0 +1,9 @@
+<li data-category-id="<%= tree[:node].id %>"><%= tree[:node].name %>
+<% if not tree[:children].empty? %>
+<ul>
+      <% tree[:children].each do |n| %>
+        <%= render :partial => "tree", :object => n -%>
+      <% end %>
+</ul>
+  <% end %>
+</li>

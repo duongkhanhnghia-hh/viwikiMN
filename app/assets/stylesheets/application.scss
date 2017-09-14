@@ -1,0 +1,42 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require jstree/dist/themes/default/style
+
+ *= require_self
+ *= require metronic/global/plugins/simple-line-icons/simple-line-icons
+ *= require metronic/global/plugins/bootstrap/css/bootstrap
+ *= require metronic/global/plugins/uniform/css/uniform.default
+ *= require metronic/global/plugins/bootstrap-switch/css/bootstrap-switch
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+ *= require metronic/global/plugins/bootstrap-daterangepicker/daterangepicker
+ *= require metronic/global/plugins/morris/morris
+ *= require metronic/global/plugins/fullcalendar/fullcalendar
+ *= require metronic/global/plugins/jqvmap/jqvmap/jqvmap
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+ *= require metronic/global/css/components-md.min
+ *= require metronic/global/css/plugins-md
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+ *= require metronic/layouts/layout3/css/layout
+ *= require metronic/layouts/layout3/css/themes/default
+ *= require metronic/layouts/layout3/css/custom
+        <!-- END THEME LAYOUT STYLES -->
+
+ *= require_tree .
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";

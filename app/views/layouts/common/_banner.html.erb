@@ -1,0 +1,23 @@
+<!-- BEGIN HEADER TOP -->
+<div class="page-header-top">
+  <div class="container">
+    <!-- BEGIN LOGO -->
+    <div class="page-logo">
+      <a href="<%= root_path %>">
+        <%= image_tag('logo-wiki.png', alt: "Missing logo", class: "logo-wiki") %>
+      </a>
+    </div>
+    <!-- END LOGO -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <a href="javascript:;" class="menu-toggler"></a>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <!-- BEGIN TOP NAVIGATION MENU -->
+    <div class="top-menu">
+      <ul class="nav navbar-nav pull-right">
+        <%= render "layouts/common/login_items" %>
+      </ul>
+    </div>
+    <!-- END TOP NAVIGATION MENU -->
+  </div>
+</div>
+<!-- END HEADER TOP -->
