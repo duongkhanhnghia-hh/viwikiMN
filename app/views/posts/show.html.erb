@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Category:</strong>
   <%= @post.category_id %>
@@ -15,6 +13,18 @@
   <%= @post.body %>
 </p>
 <br>
+
+<div id="votes">	
+	<h3><%= @post.votes.sum(:star)/@post.votes.count %> Star</h3>
+	<%= form_for [@category, @post, Vote.new] do |f|%>
+		<div class="field">
+			<%= f.text_area :star, class: "form_control"%>		
+		</div>
+		<br>		
+		<%= f.submit "Add Votes", class: "btn btn-primary"%>
+	<% end %>	
+</div>
+
 <div id="comments">
 	<%= render :partial => @post.comments%>	
 </div>

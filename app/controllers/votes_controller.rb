@@ -24,11 +24,14 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
-    @vote = Vote.new(vote_params)
+    @category = Category.find(params[:category_id])
+    @post = Post.find(params[:post_id])
+    @vote = @post.votes.new(vote_params)
+    @vote.user = current_user  
 
     respond_to do |format|
       if @vote.save
-        format.html { redirect_to @vote, notice: 'Vote was successfully created.' }
+        format.html { redirect_to category_post_path(@category, @post), notice: 'Vote was successfully created.' }
         format.json { render :show, status: :created, location: @vote }
       else
         format.html { render :new }
