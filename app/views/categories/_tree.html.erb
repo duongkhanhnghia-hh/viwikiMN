@@ -1,9 +1,50 @@
-<li data-category-id="<%= tree[:node].id %>"><%= tree[:node].name %>
-<% if not tree[:children].empty? %>
-<ul>
-      <% tree[:children].each do |n| %>
-        <%= render :partial => "tree", :object => n -%>
+
+
+
+  <% if policy(Category).edit1? %>
+      <% if tree[:node].id == 1 %>
+      <li data-category-id="<%= tree[:node].id %>">
+        <%= link_to tree[:node].name,  category_posts_path(category_id:tree[:node].id)  %>
+        <% if not tree[:children].empty? %>
+            <ul>
+                  <% tree[:children].each do |n| %>
+                    <%= render :partial => "tree_children", :object => n -%>
+
+                  <% end %>
+            </ul>
+            <% end %>
+      </li>
       <% end %>
-</ul>
   <% end %>
-</li>
+  <% if policy(Category).edit2? %>
+      <% if tree[:node].id == 2 %>
+          <li data-category-id="<%= tree[:node].id %>">
+            <%= link_to tree[:node].name,  category_posts_path(category_id:tree[:node].id)  %>
+
+            <% if not tree[:children].empty? %>
+                <ul>
+                  <% tree[:children].each do |n| %>
+                      <%= render :partial => "tree_children", :object => n -%>
+
+                  <% end %>
+                </ul>
+            <% end %>
+          </li>
+      <% end %>
+  <% end %>
+  <% if policy(Category).edit3? %>
+      <% if tree[:node].id == 3 %>
+          <li data-category-id="<%= tree[:node].id %>">
+            <%= link_to tree[:node].name,  category_posts_path(category_id:tree[:node].id)  %>
+
+            <% if not tree[:children].empty? %>
+                <ul>
+                  <% tree[:children].each do |n| %>
+                      <%= render :partial => "tree_children", :object => n -%>
+
+                  <% end %>
+                </ul>
+            <% end %>
+          </li>
+      <% end %>
+  <% end %>

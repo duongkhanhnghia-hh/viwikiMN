@@ -14,27 +14,16 @@
 </p>
 <br>
 
-<div id="votes">	
-	<h3><%= @post.votes.sum(:star)/@post.votes.count %> Star</h3>
-	<%= form_for [@category, @post, Vote.new] do |f|%>
-		<div class="field">
-			<%= f.text_area :star, class: "form_control"%>		
-		</div>
-		<br>		
-		<%= f.submit "Add Votes", class: "btn btn-primary"%>
-	<% end %>	
-</div>
-
 <div id="comments">
-	<%= render :partial => @post.comments%>	
+  <%= render :partial => @post.comments%>
 </div>
 
 <%= form_for [@category, @post, Comment.new] do |f|%>
-	<div class="field">
-		<%= f.text_area :body, class: "form_control"%>		
-	</div>
-	<br>		
-	<%= f.submit "Add Comment", class: "btn btn-primary"%>
+    <div class="field">
+      <%= f.text_area :body, class: "form_control"%>
+    </div>
+    <br>
+    <%= f.submit "Add Comment", class: "btn btn-primary"%>
 <% end %>
 
 <%= link_to 'Edit', edit_category_post_path(@post) %> |

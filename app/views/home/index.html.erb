@@ -1,3 +1,13 @@
 <% content_for :title do %>
 Xin chào!
 <% end %>
+<div class="categories_tittle">
+
+  <%= link_to "Toán học", category_path(Category.find(2)) %>
+  <%= link_to "CNTT", category_path(Category.find(1))%>
+  <%= link_to "Văn học" %>
+  <%= link_to "Lịch sử" %>
+  <%= link_to "Địa lý"%>
+  <%= link_to "Vật lý", category_path(Category.find(3))%>
+  <%= link_to "Hóa học" %>
+</div>

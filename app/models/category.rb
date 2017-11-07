@@ -5,6 +5,6 @@ class Category < ApplicationRecord
   include NestedTree
 
   has_many :articles
+  has_many :comments
   has_many :posts
-
 end

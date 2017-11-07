@@ -1,7 +1,8 @@
 FactoryGirl.define do
   factory :post do
-    category_id 1
     title "MyString"
     body "MyText"
+    category_id 1
+    user nil
   end
 end

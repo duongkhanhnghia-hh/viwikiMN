@@ -7,10 +7,31 @@ class CategoriesController < ApplicationController
 
   def index
     scope = policy_scope(Category)
-
     @editable = scope != nil
     gon.editable = @editable
+    if not scope
+      scope = Category.all
+    end
 
+    @categories = scope.nested_tree
+  end
+
+  def show
+
+    scope = policy_scope(Category)
+    @editable = scope != nil
+    gon.editable = @editable
+    if not scope
+      scope = Category.all
+    end
+
+    @categories = scope.nested_tree
+  end
+
+  def showall
+    scope = policy_scope(Category)
+    @editable = scope != nil
+    gon.editable = @editable
     if not scope
       scope = Category.all
     end

@@ -1,4 +1,4 @@
-class User < ApplicationRecord	
+class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -6,7 +6,7 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable,
     :confirmable
 
-  has_many :posts
   has_many :comments
-  has_many :votes
+  has_many :posts
+
 end

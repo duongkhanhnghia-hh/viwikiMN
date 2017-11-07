@@ -34,7 +34,40 @@ $(document).ready(function () {
                 "icon" : "fa fa-folder icon-state-warning icon-lg"
             }
         },
-        "plugins" : [ "wholerow", "dnd", "sort", "state", "types" ]
+        "plugins" : [ "wholerow", "dnd", "sort", "state", "types" ],
+        //,"contextmenu" contextmenu : {
+        //     "items": function (node) {
+        //         return {
+        //             "view": {
+        //                 label: "View",
+        //                 action: function (obj) {
+        //                     window.open("/users/files/view/" + node.id);
+        //                 }
+        //             },
+        //             "rename": {
+        //                 label: "Rename",
+        //                 action: function (obj) {
+        //                     $j("#jstree").jstree(true).edit(node)
+        //                 }
+        //             },
+        //             "create": {
+        //                 label: "Create New",
+        //                 action: function () {
+        //                     createNode(node);
+        //                 }
+        //             },
+        //             "delete": {
+        //                 label: "Delete",
+        //                 action: function () {
+        //                     if (confirm("Really delete " + node.text + "?")) {
+        //                         deleteNode(node);
+        //                     }
+        //                 },
+        //                 separator_before: true
+        //             }
+        //         }
+        //     }
+        //}
     });
 
     $("#upload_datafile").on("change", function() {
@@ -65,6 +98,20 @@ function extract_excel() {
             console.log("success");
         }
     });
+}
+
+function view_posts() {
+    var ref = $(cat_selector).jstree(true),
+        sel = ref.get_selected();
+
+    if (!sel.length) {
+        return false;
+    }
+    sel = sel[0];
+    var category_id = ref.get_node(sel).data.categoryId;
+    var r = "/categories/" + category_id + "/posts";
+    open(r, '_self');
+    return false;
 }
 
 function create_child() {
@@ -162,3 +209,19 @@ function delete_node() {
 function uploadfile() {
     $("#upload_datafile").trigger("click");
 }
+window.onload = init;
+function init() {
+    document.onmousemove = getCursorXY;
+}
+$(document).ready( function(){
+    $(window).contextmenu( function( e ){
+        var x,y;
+        x = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+        y = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+
+
+    });
+});
+$(document).mousedown(function(event) {
+
+});

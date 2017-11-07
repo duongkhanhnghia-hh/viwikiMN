@@ -1,3 +1,54 @@
 // Place all the styles related to the Categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.context-menu {
+  display: none;
+  position: absolute;
+  z-index: 10;
+}
+
+.context-menu--active {
+  display: block;
+  border: 1px solid black;
+}
+
+.context-menu__items li:hover{
+  background-color : orange;
+}
+.context-menu__items li{
+  border: 1px solid black;
+  list-style:none;
+  padding-top :3px;
+  padding-right :37px;
+  padding-left :30px;
+
+  background-color : black;
+}
+#item-first{
+  padding-top :20px;
+}
+#item-last{
+  padding-bottom :20px;
+}
+#item-first:hover{
+  background-color : black;
+}
+#item-last:hover{
+  background-color : black;
+}
+.context-menu__link{
+  color:white;
+}
+.context-menu__items li a{
+  text-decoration: none;
+}
+.context-menu ul{
+  padding-top :20px;
+  padding-bottom :20px;
+
+  padding-left :-30px;
+}
+.context-menu__items{
+  margin-top :-15px;
+  margin-left :-37px;
+}
