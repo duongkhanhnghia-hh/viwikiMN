@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Phan quyen </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th class="usertable" id="pqtit" >Phan quyen</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<div>
+  <div style="display: inline;">
+    <% i = 0; %>
+    <% @user_pq.each do |user| %>
+      <div id="pqemail" class="pq" onclick=<%= "emailcl(" + i.to_s + ")" %>  >
+        <%=  user.email %>
+      </div>
+        <% id = "emaildetail" + i.to_s; %>
+        <div id=<%=id%> class="emaildetail"  >
+            <% @roles.each do |roleall|  %>
+              <% count = 0 %>
+              <% user.roles.each do |roleuser| %>
+                  <% if roleall == roleuser %>
+                    <% count = count + 1 %>
+                  <% end %>  
+              <% end %>
+              <% if count == 0 %>
+                <div id=<%="emaildetailblack" + user.id.to_s + roleall.id.to_s%> style="color: black" onclick="detailblack(<%=user.id%>, <%=roleall.id%>)">
+              <% else %>
+                <div id=<%="emaildetailred" + user.id.to_s + roleall.id.to_s%> style="color: red" onclick="detailred(<%=user.id%>,<%=roleall.id%>)">
+              <% end %>
+                  <%= roleall.name %>
+                  <% if roleall.name != "admin" %>
+                    <%= @categories.find(roleall.resource_id).name %>
+                  <% end %>
+                </div>
+            <% end %>
+
+        <% i= i + 1; %>
+        </div>
+      
+    <% end %>
+  </div>
+  <div style="display: inline;">
+    <% j = 0; %>
+    <% @user_npq.each do |user|  %>
+      <div id="npqemail" class="npq" onclick=<%= "emailcl(" + i.to_s + ")" %>>
+        <%=  user.email %>
+      </div>
+      <% id = "emaildetail" + j.to_s; %>
+        <div id=<%=id%> class="emaildetail"  >
+            <% @roles.each do |roleall|  %>
+                <div id=<%="emaildetailblack" + user.id.to_s + roleall.id.to_s%> style="color: black" onclick="detailblack(<%=user.id%>, <%=roleall.id%>)">
+                  <%= roleall.name %>
+                  <% if roleall.name != "admin" %>
+                    <%= @categories.find(roleall.resource_id).name %>
+                  <% end %>
+                </div>
+            <% end %>
+
+        <% j= j + 1; %>
+        </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<%= javascript_tag do %>
+  window.roles = '<%= @roles[0].name %>';
+<% end %>
+

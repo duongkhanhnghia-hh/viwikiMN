@@ -1,0 +1,106 @@
+
+<% if policy(Category).edit1?%>
+    <% if tree_id[:node].id == params[:id].to_i and params[:id].to_i == 1 %>
+        <li data-category-id="<%= tree_id[:node].id %>">
+          <%= link_to tree_id[:node].name,  category_posts_path(category_id:tree_id[:node].id)  %>
+          <% if not tree_id[:children].empty? %>
+              <ul>
+                <% tree_id[:children].each do |n| %>
+                    <%= render :partial => "tree_children", :object => n -%>
+
+                <% end %>
+              </ul>
+          <% end %>
+        </li>
+    <% end %>
+<% end %>
+<% if policy(Category).edit2?%>
+    <% if tree_id[:node].id == params[:id].to_i and params[:id].to_i == 2 %>
+        <li data-category-id="<%= tree_id[:node].id %>">
+          <%= link_to tree_id[:node].name,  category_posts_path(category_id:tree_id[:node].id)  %>
+          <% if not tree_id[:children].empty? %>
+              <ul>
+                <% tree_id[:children].each do |n| %>
+                    <%= render :partial => "tree_children", :object => n -%>
+
+                <% end %>
+              </ul>
+          <% end %>
+        </li>
+    <% end %>
+<% end %>>
+<% if policy(Category).edit3?%>
+    <% if tree_id[:node].id == params[:id].to_i and params[:id].to_i == 3 %>
+        <li data-category-id="<%= tree_id[:node].id %>">
+          <%= link_to tree_id[:node].name,  category_posts_path(category_id:tree_id[:node].id)  %>
+          <% if not tree_id[:children].empty? %>
+              <ul>
+                <% tree_id[:children].each do |n| %>
+                    <%= render :partial => "tree_children", :object => n -%>
+
+                <% end %>
+              </ul>
+          <% end %>
+        </li>
+    <% end %>
+<% end %>>
+<% if policy(Category).edit4?%>
+    <% if tree_id[:node].id == params[:id].to_i and params[:id].to_i == 4  %>
+        <li data-category-id="<%= tree_id[:node].id %>">
+          <%= link_to tree_id[:node].name,  category_posts_path(category_id:tree_id[:node].id)  %>
+          <% if not tree_id[:children].empty? %>
+              <ul>
+                <% tree_id[:children].each do |n| %>
+                    <%= render :partial => "tree_children", :object => n -%>
+
+                <% end %>
+              </ul>
+          <% end %>
+        </li>
+    <% end %>
+<% end %>>
+<% if policy(Category).edit5?%>
+    <% if tree_id[:node].id == params[:id].to_i and params[:id].to_i == 5 %>
+        <li data-category-id="<%= tree_id[:node].id %>">
+          <%= link_to tree_id[:node].name,  category_posts_path(category_id:tree_id[:node].id)  %>
+          <% if not tree_id[:children].empty? %>
+              <ul>
+                <% tree_id[:children].each do |n| %>
+                    <%= render :partial => "tree_children", :object => n -%>
+
+                <% end %>
+              </ul>
+          <% end %>
+        </li>
+    <% end %>
+<% end %>
+<% if policy(Category).edit6?%>
+    <% if tree_id[:node].id == params[:id].to_i and params[:id].to_i == 6 %>
+        <li data-category-id="<%= tree_id[:node].id %>">
+          <%= link_to tree_id[:node].name,  category_posts_path(category_id:tree_id[:node].id)  %>
+          <% if not tree_id[:children].empty? %>
+              <ul>
+                <% tree_id[:children].each do |n| %>
+                    <%= render :partial => "tree_children", :object => n -%>
+
+                <% end %>
+              </ul>
+          <% end %>
+        </li>
+    <% end %>
+<% end %>>
+<% if policy(Category).edit7?%>
+    <% if tree_id[:node].id == params[:id].to_i and params[:id].to_i == 7 %>
+        <li data-category-id="<%= tree_id[:node].id %>">
+          <%= link_to tree_id[:node].name,  category_posts_path(category_id:tree_id[:node].id)  %>
+          <% if not tree_id[:children].empty? %>
+              <ul>
+                <% tree_id[:children].each do |n| %>
+                    <%= render :partial => "tree_children", :object => n -%>
+
+                <% end %>
+              </ul>
+          <% end %>
+        </li>
+    <% end %>
+<% end %>>

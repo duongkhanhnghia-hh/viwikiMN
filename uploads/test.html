@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">    
+	<title>Title</title>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<nav class="context-menu">
+    <ul class="context-menu__items">
+	<li class="context-menu__item" id="item-first">
+        </li>
+        <li class="context-menu__item" >
+            <a href="#" class="context-menu__link">
+                <i class="fa fa-eye"></i> View Task
+            </a>
+        </li>
+        <li class="context-menu__item">
+            <a href="#" class="context-menu__link">
+                <i class="fa fa-edit"></i> Edit Task
+            </a>
+        </li>
+        <li class="context-menu__item" >
+            <a href="#" class="context-menu__link">
+                <i class="fa fa-times"></i> Delete Task
+            </a>
+        </li>
+	<li class="context-menu__item" id="item-last">
+        </li>
+    </ul>
+</nav>
+<script>
+window.onload = init;
+function init() {
+    if (window.Event) {
+    document.captureEvents(Event.MOUSEMOVE);
+    }
+    document.onmousemove = getCursorXY;
+}
+$(document).ready( function(){
+   $(window).contextmenu( function( e ){
+	  var x,y;
+	  x = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+   	  y = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+
+          $('nav.context-menu').css({'display':'block', 'top':y, 'left':x}); 
+          e.preventDefault();
+   });
+});
+$(document).mousedown(function(event) {
+  if (event.which == 1)
+    $('nav.context-menu').css({'display':'none'});
+});
+</script>
+
+<input type="text" id="cursorX" size="3"> X-position of the mouse cursor
+<br /><br />
+<input type="text" id="cursorY" size="3"> Y-position of the mouse cursor
+<button>Click</button>
+
+</body>
+</html>
+

@@ -1,0 +1,77 @@
+<% content_for :title do %>
+    Quản lý chuyên mục
+<% end %>
+<div class="portlet light ">
+  <% if @editable %>
+      <div class="portlet-title">
+        <div class="title">
+        </div>
+        <div class="actions">
+          <div class="btn-group">
+            <%= form_tag({:controller => "categories", :action => "import"}, {:multipart => true, :style => "display:none", :id => "upload-form"}) do %>
+                <%= file_field 'upload', 'datafile' %>
+                <%= submit_tag "Upload", :id => "start_uploading" %>
+            <% end %>
+            <button type="submit" class="btn btn-success btn-sm" onclick="uploadfile();">
+              <i class="fa fa-upload" aria-hidden="true"></i> Nhập
+            </button>
+            <a href="<%= export_path %>" class="btn btn-info btn-sm">
+              <i class="fa fa-download" aria-hidden="true"></i> Xuất
+            </a>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-success btn-sm" onclick="view_posts();">
+              <i class="fa fa-plus" aria-hidden="true"></i> Xem bài viết
+            </button>
+            <button type="button" class="btn btn-success btn-sm" onclick="create_child();">
+              <i class="fa fa-plus" aria-hidden="true"></i> Tạo chuyên mục con
+            </button>
+            <button type="button" class="btn btn-info btn-sm" onclick="rename_node();">
+              <i class="fa fa-pencil" aria-hidden="true"></i> Đổi tên
+            </button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="delete_node();">
+              <i class="fa fa-trash" aria-hidden="true"></i> Xóa
+            </button>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  <div class="portlet-body">
+    <div id="categories">
+      <ul><% @categories.each do |cat| %>
+            <%= render partial: 'tree_id', object: cat -%>
+        <% end %></ul>
+    </div>
+  </div>
+</div>
+</div>
+<div>
+  <%= form_tag('ahihi', remote: true) do %>
+  <% end %>
+</div>
+<nav class="context-menu">
+  <ul class="context-menu__items">
+    <li class="context-menu__item" id="item-first">
+    </li>
+    <li class="context-menu__item" >
+      <a href="#" class="context-menu__link">
+        Open in new tab
+      </a>
+    </li>
+    <li class="context-menu__item" >
+      <%=link_to 'View Comment',  category_posts_path(category_id:2)  %>
+    </li>
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link">
+        <i class="fa fa-edit"></i> dd comment
+      </a>
+    </li>
+    <li class="context-menu__item" >
+      <a href="#" class="context-menu__link">
+        <i class="fa fa-times"></i> Delete category
+      </a>
+    </li>
+    <li class="context-menu__item" id="item-last">
+    </li>
+  </ul>
+</nav>
