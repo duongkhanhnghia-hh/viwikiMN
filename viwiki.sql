@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.19, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
 --
 -- Host: localhost    Database: viwiki
 -- ------------------------------------------------------
--- Server version	5.7.19-0ubuntu0.16.04.1
+-- Server version	5.7.20-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -182,7 +182,7 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`id`),
   KEY `index_roles_on_name` (`name`),
   KEY `index_roles_on_name_and_resource_type_and_resource_id` (`name`,`resource_type`,`resource_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -248,7 +248,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_confirmation_token` (`confirmation_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +257,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'baongoc124@gmail.com','$2a$11$VmsnPhZSsUehLgfEnAoM1eomW.My7p9eZunbF84cb2BfGniwbNy1W',1,NULL,NULL,NULL,19,'2017-11-07 09:02:57','2017-11-05 17:59:35','127.0.0.1','127.0.0.1','WpEbbK968CLHZwDedLTr','2016-11-25 03:29:38','2016-11-25 03:29:30',NULL,'2016-11-25 03:29:30','2017-11-07 09:02:57'),(3,'test1@t.com','$2a$11$jUUUhfxvh0oM3SyCZpZ.w.uOQe6PAAYsvDir4/UUcowJj07GAfJdm',0,NULL,NULL,NULL,1,'2016-11-25 10:41:23','2016-11-25 10:41:23','::1','::1','7t4m-euH7DUt7GWQJVZF','2016-11-25 10:41:01','2016-11-25 10:40:55',NULL,'2016-11-25 10:40:55','2016-11-25 10:41:51'),(4,'jazmyn@muellermcdermott.co','$2a$11$V2wplnoFzCLjruHhLVVjeewiAXMwRXoYePlJ7V0hv6BZ0mTLB8P9a',0,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'J6HLabsJGnqDiLWs_KBd',NULL,'2016-11-28 04:44:24',NULL,'2016-11-28 04:44:24','2016-11-28 04:44:24'),(5,'hilbert@ziemannsauer.com','$2a$11$VmsnPhZSsUehLgfEnAoM1eomW.My7p9eZunbF84cb2BfGniwbNy1W',1,NULL,NULL,NULL,2,'2016-11-28 08:17:19','2016-11-28 07:25:19','::1','::1','MHcWNZxpzUy37ammDCAu','2016-11-28 07:22:56','2016-11-28 07:22:47',NULL,'2016-11-28 07:22:47','2016-11-28 08:17:19'),(6,'test1@gmail.com','$2a$11$uTnQ03kmvnpF5sA.W2idXuBaYOW1YMuf3qtP1QFVV1DNC5mn8fpYm',0,NULL,NULL,NULL,1,'2016-11-28 10:51:56','2016-11-28 10:51:56','::1','::1','51LDpzXsAZuCBNyjvUvZ','2016-11-28 10:51:44','2016-11-28 10:51:41',NULL,'2016-11-28 10:51:41','2016-11-28 10:51:56');
+INSERT INTO `users` VALUES (2,'baongoc124@gmail.com','$2a$11$VmsnPhZSsUehLgfEnAoM1eomW.My7p9eZunbF84cb2BfGniwbNy1W',1,NULL,NULL,NULL,22,'2017-11-11 10:59:16','2017-11-11 10:43:34','127.0.0.1','127.0.0.1','WpEbbK968CLHZwDedLTr','2016-11-25 03:29:38','2016-11-25 03:29:30',NULL,'2016-11-25 03:29:30','2017-11-11 10:59:16'),(3,'test1@t.com','$2a$11$jUUUhfxvh0oM3SyCZpZ.w.uOQe6PAAYsvDir4/UUcowJj07GAfJdm',1,NULL,NULL,NULL,1,'2016-11-25 10:41:23','2016-11-25 10:41:23','::1','::1','7t4m-euH7DUt7GWQJVZF','2016-11-25 10:41:01','2016-11-25 10:40:55',NULL,'2016-11-25 10:40:55','2017-11-08 18:55:41'),(4,'jazmyn@muellermcdermott.co','$2a$11$V2wplnoFzCLjruHhLVVjeewiAXMwRXoYePlJ7V0hv6BZ0mTLB8P9a',1,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'J6HLabsJGnqDiLWs_KBd',NULL,'2016-11-28 04:44:24',NULL,'2016-11-28 04:44:24','2017-11-08 18:51:20'),(5,'hilbert@ziemannsauer.com','$2a$11$VmsnPhZSsUehLgfEnAoM1eomW.My7p9eZunbF84cb2BfGniwbNy1W',1,NULL,NULL,NULL,2,'2016-11-28 08:17:19','2016-11-28 07:25:19','::1','::1','MHcWNZxpzUy37ammDCAu','2016-11-28 07:22:56','2016-11-28 07:22:47',NULL,'2016-11-28 07:22:47','2016-11-28 08:17:19'),(6,'test1@gmail.com','$2a$11$uTnQ03kmvnpF5sA.W2idXuBaYOW1YMuf3qtP1QFVV1DNC5mn8fpYm',1,NULL,NULL,NULL,1,'2016-11-28 10:51:56','2016-11-28 10:51:56','::1','::1','51LDpzXsAZuCBNyjvUvZ','2016-11-28 10:51:44','2016-11-28 10:51:41',NULL,'2016-11-28 10:51:41','2017-11-08 18:55:29'),(7,'baongoc123@gmail.com','$2a$11$2CSmSknmCM8K51g4b4pvg.ZyXnqj4EZXVkYim0.kZ7n7B3hQVmoY.',0,NULL,NULL,NULL,3,'2017-11-11 10:58:38','2017-11-11 10:40:21','127.0.0.1','127.0.0.1','iqB57CfXrZgzK76_erqm','2017-11-08 10:23:20','2017-11-08 10:23:16',NULL,'2017-11-08 10:23:16','2017-11-11 10:58:38'),(8,'baongoc1241@gmail.com','$2a$11$VmsnPhZSsUehLgfEnAoM1eomW.My7p9eZunbF84cb2BfGniwbNy1W',1,NULL,NULL,NULL,19,'2017-11-07 09:02:57','2017-11-05 17:59:35','127.0.0.1','127.0.0.1','W1pEbbK968C1LHZwDedLTr','2016-11-25 03:29:38','2016-11-25 03:29:30',NULL,'2016-11-25 03:29:30','2017-11-07 09:02:57'),(9,'test1@t1.com','$2a$11$jUUUhfxvh0oM3SyCZpZ.w.uOQe6PAAYsvDir4/UUcowJj07GAfJdm',0,NULL,NULL,NULL,1,'2016-11-25 10:41:23','2016-11-25 10:41:23','::1','::1','17t4m-eqH7qDUt7GWQJVZF','2016-11-25 10:41:01','2016-11-25 10:40:55',NULL,'2016-11-25 10:40:55','2016-11-25 10:41:51'),(10,'1jazmyn@muellermcdermott.co','$2a$11$V2wplnoFzCLjruHhLVVjeewiAXMwRXoYePlJ7V0hv6BZ0mTLB8P9a',0,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'1J6HLabsJGnqDiLWs_KBd',NULL,'2016-11-28 04:44:24',NULL,'2016-11-28 04:44:24','2016-11-28 04:44:24'),(11,'1hilbert@ziemannsauer.com','$2a$11$VmsnPhZSsUehLgfEnAoM1eomW.My7p9eZunbF84cb2BfGniwbNy1W',1,NULL,NULL,NULL,2,'2016-11-28 08:17:19','2016-11-28 07:25:19','::1','::1','MHcWNZxp1Uy37ammDCAu','2016-11-28 07:22:56','2016-11-28 07:22:47',NULL,'2016-11-28 07:22:47','2016-11-28 08:17:19'),(12,'tes1t1@gmail.com','$2a$11$uTnQ03kmvnpF5sA.W2idXuBaYOW1YMuf3qtP1QFVV1DNC5mn8fpYm',1,NULL,NULL,NULL,1,'2016-11-28 10:51:56','2016-11-28 10:51:56','::1','::1','51LDp1zXsAZuCBNyjvUvZ','2016-11-28 10:51:44','2016-11-28 10:51:41',NULL,'2016-11-28 10:51:41','2017-11-09 12:02:19');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,7 +281,7 @@ CREATE TABLE `users_roles` (
 
 LOCK TABLES `users_roles` WRITE;
 /*!40000 ALTER TABLE `users_roles` DISABLE KEYS */;
-INSERT INTO `users_roles` VALUES (2,1),(2,3),(5,2),(5,3),(6,1),(6,1),(6,2),(6,2),(6,3),(6,4),(6,6);
+INSERT INTO `users_roles` VALUES (2,1),(3,3),(4,1),(4,6),(5,1),(5,3),(6,3),(12,1);
 /*!40000 ALTER TABLE `users_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -294,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-08 10:45:47
+-- Dump completed on 2017-11-11 18:05:32
