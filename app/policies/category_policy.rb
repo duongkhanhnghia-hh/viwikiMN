@@ -1,5 +1,8 @@
 class CategoryPolicy < ApplicationPolicy
   class Scope < Scope
+    def admin?
+      user.has_role? :admin
+    end
     def edit1?
       user.has_role? :editor1
     end
@@ -31,6 +34,9 @@ class CategoryPolicy < ApplicationPolicy
       end
     end
   end
+  def admin?
+      user.has_role? :admin
+    end
   def edit1?
     user.has_role? :editor1 or user.has_role? :admin
   end

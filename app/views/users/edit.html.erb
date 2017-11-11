@@ -1,24 +1,8 @@
-function pqcl() {
-	document.getElementById("pqtit").style.display= "none";
-	document.getElementById("npqtit").style.display= "block";
-	var pq = document.getElementsByClassName("pq").length;
-	for(i =0; i < pq; i++)
-		document.getElementsByClassName("pq")[i].style.display = "none";
-	var npq = document.getElementsByClassName("npq").length;
-	for(i =0; i < npq; i++)
-		document.getElementsByClassName("npq")[i].style.display = "block";
-}
-
-function npqcl() {
-	document.getElementById("pqtit").style.display= "block"
-	document.getElementById("npqtit").style.display= "none";
-	var npq = document.getElementsByClassName("npq").length;
-	for(i =0; i < npq; i++)
-		document.getElementsByClassName("npq")[i].style.display = "none";
-	var pq = document.getElementsByClassName("pq").length;
-	for(i = 0; i < pq; i++)
-		document.getElementsByClassName("pq")[i].style.display = "block";
-}
-
-      <th class="usertable" id="npqtit" onclick="npqcl()">Chua phan quyen</th>
-      onclick="pqcl()"
+<div>
+	<div id="post1" style="width: 300px;height: 400px;border: solid;float: left;">
+		1
+	</div>
+	<div id="post2" style="width: 300px;height: 400px;border: solid;float: right;">
+		2
+	</div>
+</div>
