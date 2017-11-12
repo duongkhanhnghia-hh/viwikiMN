@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    Quản lý chuyên mục
+    Xem chuyên mục
 <% end %>
 <div class="portlet light ">
   <div class="portlet-body">
@@ -15,29 +15,3 @@
   <%= form_tag('ahihi', remote: true) do %>
   <% end %>
 </div>
-<nav class="context-menu">
-  <ul class="context-menu__items">
-    <li class="context-menu__item" id="item-first">
-    </li>
-    <li class="context-menu__item" >
-      <a href="#" class="context-menu__link">
-        Open in new tab
-      </a>
-    </li>
-    <li class="context-menu__item" >
-      <%=link_to 'View Comment',  category_posts_path(category_id:2)  %>
-    </li>
-    <li class="context-menu__item">
-      <a href="#" class="context-menu__link">
-        <i class="fa fa-edit"></i> dd comment
-      </a>
-    </li>
-    <li class="context-menu__item" >
-      <a href="#" class="context-menu__link">
-        <i class="fa fa-times"></i> Delete category
-      </a>
-    </li>
-    <li class="context-menu__item" id="item-last">
-    </li>
-  </ul>
-</nav>

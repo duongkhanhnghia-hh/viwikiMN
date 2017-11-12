@@ -10,10 +10,12 @@ class CategoriesController < ApplicationController
     @editable = scope != nil
     gon.editable = @editable
     if not scope
-      scope = Category.all
+      flash[:error] = "You must have a role to access this section!"
+      redirect_to '/'
+    else
+      @categories = scope.nested_tree
     end
 
-    @categories = scope.nested_tree
   end
 
   def show
@@ -21,22 +23,16 @@ class CategoriesController < ApplicationController
     scope = policy_scope(Category)
     @editable = scope != nil
     gon.editable = @editable
-    if not scope
-      scope = Category.all
+    if scope.exists?(params[:id].to_i)
+     @categories = scope.nested_tree
+    else 
+      flash[:error] = "You must have this role to access this section!"
+      redirect_to '/'
     end
-
-    @categories = scope.nested_tree
   end
 
   def showall
-    scope = policy_scope(Category)
-    @editable = scope != nil
-    gon.editable = @editable
-    if not scope
-      scope = Category.all
-    end
-
-    @categories = scope.nested_tree
+    @categories = Category.all.nested_tree
   end
 
   def create
