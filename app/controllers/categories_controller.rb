@@ -19,11 +19,11 @@ class CategoriesController < ApplicationController
   end
 
   def show
-
     scope = policy_scope(Category)
     @editable = scope != nil
     gon.editable = @editable
-    if scope.exists?(params[:id].to_i)
+    if scope != nil and (scope.exists?(:name => "admin") or 
+                        scope.exists?(:id => params[:id]))
      @categories = scope.nested_tree
     else 
       flash[:error] = "You must have this role to access this section!"
@@ -36,12 +36,17 @@ class CategoriesController < ApplicationController
   end
 
   def create
+    @categories = Category.all
     @category = Category.new category_params
     authorize @category
+    @parent = @categories.find(@category.parent_id)
+    @parent.children_count = @parent.children_count + 1 
+    @parent.save!
     @category.save!
-
     filename = ExcelParser.exportData()
-    render :show
+    flash[:error] = "You must have this role to access this section!"
+      
+    render :showall
   end
 
   def update
@@ -51,7 +56,11 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    @categories = Category.all
     cat = Category.find(params[:id])
+    @parent = @categories.find(cat.parent_id)
+    @parent.children_count = @parent.children_count - 1 
+    @parent.save!
     authorize cat
     cat.destroy!
   end
@@ -62,7 +71,6 @@ class CategoriesController < ApplicationController
 
     parent_id = params.require :parent_id
     parent_cat = Category.find parent_id
-
     cat.move_to_child_of parent_cat
   end
 

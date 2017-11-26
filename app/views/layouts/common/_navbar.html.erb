@@ -28,16 +28,71 @@
             Xem chuyên mục
           </a>
         </li>
-        <li class="<%= "active" if current_page? categories_path %>">
-          <a href="<%= categories_path %>" class="nav-link">
-            Sửa chuyên mục
+        <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown ">
+          <a href="javascript:;"> Mục từ
+            <span class="arrow"></span>
           </a>
+
+          <ul class="dropdown-menu pull-left">
+            <li aria-haspopup="true" class="dropdown-submenu ">
+              <a href="javascript:;" class="nav-link nav-toggle ">
+                <i class="fa fa-book"></i> Xem theo quyển
+                <span class="arrow"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <% @book.each do |book| %>
+                  <li aria-haspopup="true" class="dropdown-submenu ">
+                    <a href="javascript:;" class="nav-link nav-toggle"> <%= book.name %>
+                      <span class="arrow"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <%@entryCount = 0 %>
+                      <% @entries.each do |entry| %>
+                        <% if entry.book == book.name%>
+                          <li class="">
+                            <a href="table_datatables_managed.html" class="nav-link "> <%= entry.name %> </a>
+                          </li>
+                          <% @entryCount += 1 %>
+                        <% end %> 
+                      <% end %>
+                       <% if @entryCount == 0 %>
+                        <li class="">
+                          <a href="table_datatables_managed.html" class="nav-link "> No entry</a>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+            <li aria-haspopup="true" class="dropdown-submenu ">
+              <a href="javascript:;" class="nav-link nav-toggle ">
+                <i class="fa fa-sort-alpha-asc"></i> Xem theo vần
+                <span class="arrow"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <% @entries.each do |entry| %>
+                  <li aria-haspopup="true" class=" ">
+                    <a href="table_static_basic.html" class="nav-link "> <%= entry.name %>
+                    <br>
+                     <%= "-- " + entry.book + " --" %> 
+                     </a>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
         </li>
+        <% if current_user != nil %>
+
+        <% if current_user.roles.exists?(:name => "admin")  %>
         <li class="<%= "active" if current_page? categories_path %>">
           <a href="<%= users_path %>" class="nav-link">
             Phân quyền tài khoản
           </a>
         </li>
+        <% end %>
+        <% end %>
       </ul>
     </div>
     <!-- END MEGA MENU -->

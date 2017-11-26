@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post 'import', to: :import, controller: 'categories'
   get 'showall', to: :showall, controller: 'categories'
   post 'users/action' => 'users#action'
-
+  post 'users/chooseRole' => 'users#chooseRole'
   resources :categories do
     member do
       post :reparent, :import

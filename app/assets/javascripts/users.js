@@ -44,6 +44,19 @@ function detail(user_id,roleall_id) {
     });
 	console.log(arr);
 }
+function choose(user_id, role){
+	console.log(user_id);
+	console.log(role);
+	var arr = [user_id, role];
+	$.ajax({
+        url : "/users/chooseRole",
+        type : "post",
+        data : { data_value: JSON.stringify(arr) }
+    });
+	console.log(user_id);
+	console.log(role);
+
+}
 
     //<% @user_pq[0].roles.push @roles[2] %>
 
