@@ -50,14 +50,14 @@
                       <% @entries.each do |entry| %>
                         <% if entry.book == book.name%>
                           <li class="">
-                            <a href="table_datatables_managed.html" class="nav-link "> <%= entry.name %> </a>
+                            <a href="javascript:;" class="nav-link "> <%= entry.name %> </a>
                           </li>
                           <% @entryCount += 1 %>
                         <% end %> 
                       <% end %>
                        <% if @entryCount == 0 %>
                         <li class="">
-                          <a href="table_datatables_managed.html" class="nav-link "> No entry</a>
+                          <a href="javascript:;" class="nav-link "> No entry</a>
                         </li>
                       <% end %>
                     </ul>
@@ -73,7 +73,7 @@
               <ul class="dropdown-menu">
                 <% @entries.each do |entry| %>
                   <li aria-haspopup="true" class=" ">
-                    <a href="table_static_basic.html" class="nav-link "> <%= entry.name %>
+                    <a href="javascript:;" class="nav-link "> <%= entry.name %>
                     <br>
                      <%= "-- " + entry.book + " --" %> 
                      </a>

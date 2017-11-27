@@ -1,12 +1,11 @@
+<li data-category-id="<%= tree[:node].id %>">
+ <!--  <%= link_to tree[:node].name ,  category_posts_path(category_id:tree[:node].id)  %>
+  <% if not tree[:children].empty? %>
+  <ul>
+    <% tree[:children].each do |n| %>
+    <%= render :partial => "tree_children", :object => n -%>
 
-        <li data-category-id="<%= tree[:node].id %>">
-          <%= link_to tree[:node].name ,  category_posts_path(category_id:tree[:node].id)  %>
-          <% if not tree[:children].empty? %>
-              <ul>
-                    <% tree[:children].each do |n| %>
-                      <%= render :partial => "tree_children", :object => n -%>
-
-                    <% end %>
-              </ul>
-              <% end %>
-        </li>
+    <% end %>
+  </ul>
+  <% end %> -->
+</li>

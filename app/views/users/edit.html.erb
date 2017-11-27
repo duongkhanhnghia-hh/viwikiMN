@@ -3,10 +3,9 @@
 		<div class="caption">
 			<i class="fa fa-comments"></i>Striped Table </div>
 			<div class="tools">
-				<a href="javascript:;" class="collapse" data-original-title="" title=""> </a>
-				<a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
-				<a href="javascript:;" class="reload" data-original-title="" title=""> </a>
-				<a href="javascript:;" class="remove" data-original-title="" title=""> </a>
+				<a href="javascript:;" onclick="detailroles()"> 
+				<i class="fa fa-comments" style="color: white"></i>
+				</a>
 			</div>
 		</div>
 		<div class="portlet-body" style="display: block;min-height: 500px;">
@@ -31,7 +30,7 @@
 									<% if count < @users.length/2 + 1 %>
 									<div class="btn-group">
 										<button class="btn blue dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-											<%= user.roles[0].name %>
+											<span id=<%=user.id%>><%= user.roles[0].name %></span>
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -48,7 +47,8 @@
 																<% if user.roles.exists?(:id => role.id) %>
 																<%= check_box("post", "editor",{checked: true}) %> 
 																<% else %>
-																<%= check_box("post", "editor",{checked: false}) %> 
+																<span onclick="choose(<%=user.id%>,<%=role.id%>)" style="display:inline">
+																	<%= check_box("post", "editor",{checked: false}) %> </span> 
 																<% end %>
 																	<%= @categories.find(role.resource_id).name %>
 																</a>
@@ -70,7 +70,7 @@
 									<% else %>
 									<div class="btn-group dropup">
 										<button class="btn blue dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-											<%= user.roles[0].name %>
+											<span id=<%=user.id%>><%= user.roles[0].name %></span>
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -86,7 +86,8 @@
 														<% if user.roles.exists?(:id => role.id) %>
 														<%= check_box("post", "editor",{checked: true}) %> 
 														<% else %>
-														<%= check_box("post", "editor",{checked: false}) %> 
+														<span onclick="choose(<%=user.id%>,<%=role.id%>)" style="display:inline">
+																	<%= check_box("post", "editor",{checked: false}) %> </span> 
 														<% end %>
 														<%= @categories.find(role.resource_id).name %>
 														</a>
@@ -117,7 +118,7 @@
 									<% if count < @users.length/2 + 1 %>
 									<div class="btn-group">
 										<button class="btn blue dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-											None
+											<span id=<%=user.id%>>None</span>
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -134,7 +135,8 @@
 																<% if user.roles.exists?(:id => role.id) %>
 																<%= check_box("post", "editor",{checked: true}) %> 
 																<% else %>
-																<%= check_box("post", "editor",{checked: false}) %> 
+																<span onclick="choose(<%=user.id%>,<%=role.id%>)" style="display:inline">
+																	<%= check_box("post", "editor",{checked: false}) %> </span> 
 																<% end %>
 																	<%= @categories.find(role.resource_id).name %>
 																</a>
@@ -155,7 +157,7 @@
 									<% else %>
 									<div class="btn-group dropup">
 										<button class="btn blue dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> 
-											None
+											<span id=<%=user.id%>>None</span>
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -172,7 +174,8 @@
 																<% if user.roles.exists?(:id => role.id) %>
 																<%= check_box("post", "editor",{checked: true}) %> 
 																<% else %>
-																<%= check_box("post", "editor",{checked: false}) %> 
+																<span onclick="choose(<%=user.id%>,<%=role.id%>)" style="display:inline">
+																	<%= check_box("post", "editor",{checked: false}) %> </span> 
 																<% end %>
 																	<%= @categories.find(role.resource_id).name %>
 																</a>
