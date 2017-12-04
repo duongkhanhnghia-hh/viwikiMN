@@ -1,0 +1,59 @@
+<% content_for :title do %>
+Mô tả
+<% end %>
+<div class="col-md-12">
+  <div class="col-md-1"></div>
+  <div class="portlet box green col-md-8" style="width: 70%">
+    <div class="portlet-title">
+      <div class="caption">
+        <i class="fa fa-gift">
+        </i>
+        <%=@name%>
+      </div>
+      <% if @check %>
+      <div class="actions">
+        <a href="javascript:;" class="btn white" onclick="edit_save(<%=params[:id]%>)">
+          <i class="fa fa-pencil">
+          </i> 
+          <span id="edit_save" >Edit</span>
+        </a>
+      </div>
+      <% end %>
+    </div>
+    <div class="portlet-body">
+      <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;" id="description">
+        <div class="scroller" style="height: 200px; overflow: hidden; width: auto;" data-initialized="1">
+          <strong>url
+          </strong>
+          <br>
+          <br> 
+          <span id="description_text"><%=@description%></span>
+        </div>
+        <div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 25px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 175.439px;">
+        </div>
+        <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;">
+        </div>
+      </div>
+      <div class="form-group form-md-line-input form-md-floating-label" id="edit_description" style="display: none;">
+        <textarea class="form-control" rows="8" id="description_area"><%=@description%></textarea>
+        <label for="form_control_1">url</label>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+<div class="col-md-11">
+  <div class="blog-content-2">
+    <div class="blog-single-content bordered blog-container">
+      <div class="blog-comments" style="background-color: #fff; padding: 5% 5% 5% 5%">
+        <h3 class="sbold blog-comments-title" style="margin: 20px 0px 50px 0px">Comments(<%= @description_comment.length %>)</h3>
+        <%= render "comments/comment_created.html" %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

@@ -1,0 +1,30 @@
+<div class="c-comment-list" id="list-coment">
+	<% @description_comment.each  do |comment| %>
+	<div class="media">
+		<div class="media-left">
+			<a href="#">
+				<img class="media-object media-avatar" alt="" src="<%= image_url "avatar.png" %>"> 
+			</a>
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading">
+				<a href="#" class="username"><%=@users.find(comment.user_id).email%></a> 
+				<br>
+				<div class="time_comment">
+					<span class="c-date"><%= comment.created_at %></span>
+				</div>
+			</h4> 
+			<%= comment.body %>
+		</div>
+	</div>
+	<% end -%>
+	<h3 class="sbold blog-comments-title" style="margin: 40px 0px 40px 0px">Leave A Comment</h3>
+	<form action="#">
+		<div class="form-group">
+			<textarea rows="8" name="message" placeholder="Write comment here ..." class="form-control c-square" id="comment"></textarea>
+		</div>
+		<div class="form-group">
+			<button type="button" class="btn blue"onclick="create_comment(<%=params[:id]%>)">Submit</button>
+		</div>
+	</form>
+</div>

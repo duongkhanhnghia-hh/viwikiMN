@@ -1,0 +1,21 @@
+<div class="portlet light portlet-fit ">
+	<div class="portlet-body">
+		<div class="mt-element-list">
+			<div class="mt-list-head list-simple font-white bg-green">
+				<div class="list-head-title-container">
+					<h4 class="list-title">Categories Tree</h4>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div id="categories">
+					<ul><% @categories.each do |cat| %>
+						<%= render partial: 'tree', object: cat -%>
+						<% end %></ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

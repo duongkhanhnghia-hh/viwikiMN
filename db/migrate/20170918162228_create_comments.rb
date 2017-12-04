@@ -2,9 +2,9 @@ class CreateComments < ActiveRecord::Migration[5.0]
   def change
     create_table :comments do |t|
       t.text :body
-      t.integer :post_id
+      t.integer :resource_id
       t.references :user, foreign_key: true
-
+      t.string :resource_type
       t.timestamps
     end
     add_index :comments, :post_id

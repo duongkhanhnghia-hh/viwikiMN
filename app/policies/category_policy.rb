@@ -14,7 +14,6 @@ class CategoryPolicy < ApplicationPolicy
       user.has_role? :admin
     end
   def editor?
-      
       for i in 1..Category.all.length
         if user.has_role? :editor, Category.all.find(i) then
           break

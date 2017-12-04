@@ -1,16 +1,18 @@
 <% content_for :title do %>
 Quản lý chuyên mục
 <% end %>
-<div class="portlet light ">
-
   
+<div class="portlet light ">
   <% if @editable %>
+
   <div class="portlet-title">
     <div class="title">
+
     </div>
     <div class="actions">
       <div class="btn-group">
         <%= form_tag({:controller => "categories", :action => "import"}, {:multipart => true, :style => "display:none", :id => "upload-form"}) do %>
+        
             <%= file_field 'upload', 'datafile' %>
             <%= submit_tag "Upload", :id => "start_uploading" %>
         <% end %>

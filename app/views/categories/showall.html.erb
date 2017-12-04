@@ -1,16 +1,7 @@
 <% content_for :title do %>
-    Xem chuyên mục
+Xem chuyên mục
 <% end %>
-<div class="portlet light ">
-  <div class="portlet-body">
-    <div id="categories">
-      <ul><% @categories.each do |cat| %>
-            <%= render partial: 'tree', object: cat -%>
-        <% end %></ul>
-    </div>
-  </div>
-</div>
-</div>
+<%= render partial: 'show_categories'-%>
 <div>
   <%= form_tag('ahihi', remote: true) do %>
   <% end %>

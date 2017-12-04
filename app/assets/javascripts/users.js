@@ -2,9 +2,11 @@
 // All this logic will automatically be available in application.js.
 
 function choose(user_id, role){
+	console.log(document.getElementById(user_id).innerHTML);
 	if(role =='Admin' || role == 'User' || role=='None')
 		document.getElementById(user_id).innerHTML=role;
-	else if (document.getElementById(user_id).innerHTML !='admin')
+	else if (document.getElementById(user_id).innerHTML !='admin' 
+		 && document.getElementById(user_id).innerHTML !='Admin')
 		document.getElementById(user_id).innerHTML='Editor';
 	var arr = [user_id, role];
 	$.ajax({

@@ -1,0 +1,25 @@
+<div class="portlet light portlet-fit ">
+    <div class="portlet-body">
+        <div class="mt-element-list">
+            <div class="mt-list-head list-simple font-white bg-green">
+                <div class="list-head-title-container">
+                <h4 class="list-title">Categories List</h4>
+                </div>
+            </div>
+            <div class="mt-list-container list-simple" >
+                <ul>
+                    <%@categories_list.each do |cat|%>
+                    <li class="mt-list-item" style="padding: 0px 0px">
+                        <div class="list-item-content" >
+                            <h5 >
+                                <a href="javascript:;"><%=cat%></a>
+                            </h5>
+                        </div>
+                    </li>
+
+                    <% end -%>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -74,3 +74,14 @@ a:hover{
 li {
 	list-style-type: none;
 }
+.roles-menu{
+	max-height: 260px;
+	z-index: 6;
+	max-width: 235px;
+	overflow: auto;
+}
+.roles-menu li{
+	width: 350px;
+}
+.roles-menu li a{
+}

@@ -21,25 +21,27 @@ ActiveRecord::Schema.define(version: 20170918162228) do
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                       null: false
+    t.string   "name",                                     null: false
     t.integer  "parent_id"
-    t.integer  "lft",                        null: false
-    t.integer  "rgt",                        null: false
-    t.integer  "depth",          default: 0, null: false
-    t.integer  "children_count", default: 0, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "lft",                                      null: false
+    t.integer  "rgt",                                      null: false
+    t.text     "description",    limit: 65535
+    t.integer  "depth",                        default: 0, null: false
+    t.integer  "children_count",               default: 0, null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.index ["lft"], name: "index_categories_on_lft", using: :btree
     t.index ["parent_id"], name: "index_categories_on_parent_id", using: :btree
     t.index ["rgt"], name: "index_categories_on_rgt", using: :btree
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "body",       limit: 65535
+    t.text     "body",          limit: 65535
     t.integer  "post_id"
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "resource_type"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end

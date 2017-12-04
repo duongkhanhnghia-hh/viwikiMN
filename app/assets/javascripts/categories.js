@@ -225,3 +225,56 @@ $(document).ready( function(){
 $(document).mousedown(function(event) {
 
 });
+
+function edit_save(id){
+
+    if (document.getElementById("edit_save").innerHTML == 'Edit'){
+        document.getElementById("edit_save").innerHTML = 'Save';
+        document.getElementById("description").style.display = 'none';
+        document.getElementById("edit_description").style.display = 'block';
+    }else{
+        document.getElementById("edit_save").innerHTML = 'Edit';
+        document.getElementById("description").style.display = 'block';
+        document.getElementById("edit_description").style.display = 'none';
+        var description = document.getElementById("description_area").value;
+        document.getElementById("description_text").innerHTML = description;
+        var arr = [id, description];
+        $.ajax({
+        url : "/categories/edit_description",
+        type : "post",
+        data : { data_value: JSON.stringify(arr) }
+        });
+    }
+    
+}
+
+function choose_view(id){
+    console.log('adada');
+    if(id == 1){
+        document.getElementById('list_tree').style.display ='block';
+        document.getElementById('list_simple').style.display ='none';
+        document.getElementById('list_entries').style.display ='none';
+    }
+    else if (id == 2){
+        document.getElementById('list_tree').style.display ='none';
+        document.getElementById('list_simple').style.display ='block';
+        document.getElementById('list_entries').style.display ='none';
+    }else{
+        document.getElementById('list_tree').style.display ='none';
+        document.getElementById('list_simple').style.display ='none';
+        document.getElementById('list_entries').style.display ='block';
+    }
+
+}
+function create_comment(resource_id){
+    console.log("fjklf");
+    var comment = document.getElementById("comment").value;
+    var resource_type = "Description"
+    var arr = [resource_id, comment,resource_type ];
+    $.ajax({
+        url : "/categories/create_comment",
+        type : "post",
+        data : { data_value: JSON.stringify(arr) }
+        });
+}
+

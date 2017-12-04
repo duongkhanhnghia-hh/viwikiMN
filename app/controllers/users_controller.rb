@@ -56,8 +56,12 @@ class UsersController < ApplicationController
 		if @users.find(@user_id).roles.exists?(:name => "user")
 			@users.find(@user_id).roles.destroy(@roles.find_by(name: 'user'))
 		end
-		@users.find(@user_id).roles.push @roles.find(@roleId.to_s)
+		if !(@users.find(@user_id).roles.exists?(:id => @roleId.to_s))
+			@users.find(@user_id).roles.push @roles.find(@roleId.to_s)
+		else 
+			@users.find(@user_id).roles.destroy(@roles.find(@roleId.to_s))
 	   	@users.find(@user_id).update(phanquyen: '1')
+	   end
 	end
 		  # if @arrvalue[2] == '0'
 	  # 	@users.find(@arrvalue[0].to_s).roles.push @roles.find(@arrvalue[1].to_s)

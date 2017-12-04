@@ -1,0 +1,30 @@
+<div class="portlet light ">
+  <div class="clearfix">
+    <div class="btn-group" data-toggle="buttons" style="float: right;">
+      <label class="btn green active" onclick="choose_view(1)">
+        <input type="radio" class="toggle" > Tree
+      </label>
+      <label class="btn green" onclick="choose_view(2)">
+        <input type="radio" class="toggle" > List Categories
+      </label>
+      <label class="btn green" onclick="choose_view(3)">
+        <input type="radio" class="toggle" > List Entries
+      </label>
+    </div>
+  </div>
+  <div id="view_list">
+    <div id="list_tree">
+      <%= render partial: 'tree_list_categories'-%>
+    </div>
+    <div id="list_simple" style="display: none;">
+      <%= render partial: 'list_categories'-%>
+    </div>
+    <div id="list_entries" style="display: none;">
+      <%= render partial: 'list_entries'-%>
+    </div>
+  </div>
+</div>
+<div>
+  <%= form_tag('ahihi', remote: true) do %>
+  <% end %>
+</div>
