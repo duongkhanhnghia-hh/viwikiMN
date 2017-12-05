@@ -114,6 +114,19 @@ function view_posts() {
     return false;
 }
 
+function view_description(){
+    var ref = $(cat_selector).jstree(true),
+        sel = ref.get_selected();
+
+    if (!sel.length) {
+        return false;
+    }
+    sel = sel[0];
+    var category_id = ref.get_node(sel).data.categoryId;
+    var r = "/categories/" + category_id + "/description";
+    open(r, '_self');
+    return false;
+}
 function create_child() {
 		var ref = $(cat_selector).jstree(true),
 				sel = ref.get_selected();
