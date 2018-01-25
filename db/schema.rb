@@ -12,22 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180118091208) do
 
-  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "trackable_type"
-    t.integer  "trackable_id"
-    t.string   "owner_type"
-    t.integer  "owner_id"
-    t.string   "key"
-    t.text     "parameters",     limit: 65535
-    t.string   "recipient_type"
-    t.integer  "recipient_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
-    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
-    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
-  end
-
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",        null: false
     t.integer  "category_id", null: false
@@ -52,13 +36,12 @@ ActiveRecord::Schema.define(version: 20180118091208) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "body",          limit: 65535
-    t.integer  "resource_id"
+    t.text     "body",        limit: 65535
+    t.integer  "category_id"
     t.integer  "user_id"
-    t.string   "resource_type"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.index ["resource_id"], name: "index_comments_on_resource_id", using: :btree
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["category_id"], name: "index_comments_on_category_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
@@ -112,7 +95,7 @@ ActiveRecord::Schema.define(version: 20180118091208) do
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
   end
 
-  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "item_type",                     null: false
     t.integer  "item_id",                       null: false
     t.string   "event",                         null: false
@@ -122,6 +105,8 @@ ActiveRecord::Schema.define(version: 20180118091208) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
+  add_foreign_key "comments", "categories"
   add_foreign_key "comments", "users"
+  add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
 end
