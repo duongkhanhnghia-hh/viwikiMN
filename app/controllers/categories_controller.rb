@@ -108,6 +108,20 @@ class CategoriesController < ApplicationController
     @comment.save!
   end
 
+  def details
+      @category = Category.find(params[:id])  
+      @description = Category.find(params[:id]).description    
+      @post = Post.find_by(:category_id => params[:id])
+      @comments = Comment.all
+      @users = User.all
+      @description_comment = Array.new
+      @comments.each do |comment|
+      if comment.resource_type == 'Description'
+        @description_comment.push comment
+      end
+    end
+  end
+
   def description
     @categories = Category.all
     @name = @categories.find(params[:id]).name
@@ -122,6 +136,10 @@ class CategoriesController < ApplicationController
       end
     end
   end
+
+  def edit__description
+
+  end 
 
   def edit_description
     @value = params[:data_value]
@@ -198,12 +216,30 @@ class CategoriesController < ApplicationController
   end
 
   def reparent
-    cat = Category.find params[:id]
+
+
+
+    cat = Category.find params[:id]    
     authorize cat
+
+    version = new Version
+    version.
 
     parent_id = params.require :parent_id
     parent_cat = Category.find parent_id
-    cat.move_to_child_of parent_cat
+    cat.move_to_child_of parent_cat    
+  end
+
+  def undo
+    version = Version.last
+    
+    @categories = Category.all
+    cat = Category.order(updated_at: :desc).limit(1)
+    @parent = @categories.find(cat.parent_id)
+    @parent.children_count = @parent.children_count + 1
+    @parent.save!
+    authorize cat
+    cat.destroy!
   end
 
   def export

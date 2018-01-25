@@ -13,6 +13,26 @@ $(document).ready(function () {
         }
 
         var payload = {'parent_id': parent_id};
+
+        sel = ref.get_selected();
+
+            if(!sel.length) {
+                return false;
+            }
+
+        var node = ref.get_node(sel[0]);
+
+        $.ajax({
+            type: "POST",
+            url: Routes.category_path(node.data.categoryId),
+            dataType: "json",
+            data: {"_method": "patch", "name": node.text},
+            success: function () {
+                console.log(node.data.categoryId);
+            }
+        });
+
+
         $.post(Routes.reparent_category_path(data.node.data.categoryId), payload, function (data) {
             var ref = $(cat_selector).jstree(true);
             ref.open_node(this.parent);
@@ -222,6 +242,19 @@ function delete_node() {
 function uploadfile() {
     $("#upload_datafile").trigger("click");
 }
+
+function undo() {
+    $.ajax({
+        type: "GET",
+        url: Routes.undo_path(),
+        dataType: "json",        
+        success: function () {
+            console.log("success");
+        }
+    });
+
+}
+
 window.onload = init;
 function init() {
     document.onmousemove = getCursorXY;

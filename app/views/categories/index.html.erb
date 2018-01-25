@@ -16,6 +16,9 @@ Quản lý chuyên mục
             <%= file_field 'upload', 'datafile' %>
             <%= submit_tag "Upload", :id => "start_uploading" %>
         <% end %>
+        <button type="submit" class="btn btn-success btn-sm" onclick="undo();">
+          Restore
+        </button>
         <button type="submit" class="btn btn-success btn-sm" onclick="uploadfile();">
           <i class="fa fa-upload" aria-hidden="true"></i> Nhập
         </button>

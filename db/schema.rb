@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918162228) do
+ActiveRecord::Schema.define(version: 20180118091208) do
+
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "trackable_type"
+    t.integer  "trackable_id"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.string   "key"
+    t.text     "parameters",     limit: 65535
+    t.string   "recipient_type"
+    t.integer  "recipient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
+    t.index ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
+    t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+  end
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",        null: false
@@ -37,12 +53,12 @@ ActiveRecord::Schema.define(version: 20170918162228) do
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "body",          limit: 65535
-    t.integer  "post_id"
+    t.integer  "resource_id"
     t.integer  "user_id"
     t.string   "resource_type"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
+    t.index ["resource_id"], name: "index_comments_on_resource_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
@@ -94,6 +110,16 @@ ActiveRecord::Schema.define(version: 20170918162228) do
     t.integer "user_id"
     t.integer "role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+  end
+
+  create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "item_type",                     null: false
+    t.integer  "item_id",                       null: false
+    t.string   "event",                         null: false
+    t.string   "whodunnit"
+    t.text     "object",     limit: 4294967295
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
   add_foreign_key "comments", "users"

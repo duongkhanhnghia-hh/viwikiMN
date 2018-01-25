@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'export', to: :export, controller: 'categories'
   post 'import', to: :import, controller: 'categories'
   get 'showall', to: :showall, controller: 'categories'
+  get 'undo', to: :undo, controller: 'categories'
   get '_list_categories', to: :_list_categories, controller: 'categories'
   post 'users/action' => 'users#action'
   post 'users/chooseRole' => 'users#chooseRole'
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
     member do
       post :reparent, :import
       get :description
+      get :details
+      post :edit__description
     end
     resources :posts do
       resources :comments

@@ -13,22 +13,24 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: fit
-  password: dhqghn
+  #username: fit
+  #password: dhqghn
+  username: root
+  password: 25031997
   host: 127.0.0.1
   # socket: /tmp/mysql.sock
 #  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  database: viwiki
+  database: viwiki1
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: viwiki
+  database: viwiki1
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -51,4 +53,4 @@ test:
 #
 production:
   <<: *default
-  database: viwiki
+  database: viwiki1

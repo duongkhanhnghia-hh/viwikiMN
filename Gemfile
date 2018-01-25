@@ -71,6 +71,8 @@ gem "factory_girl_rails", "~> 4.0"
 gem "pundit"
 gem "faker"
 gem "awesome_print"
+gem "paper_trail", "~> 4.0.0"
+
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
