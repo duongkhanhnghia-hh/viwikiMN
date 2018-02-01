@@ -116,9 +116,9 @@ class CategoriesController < ApplicationController
       @users = User.all
       @description_comment = Array.new
       @comments.each do |comment|
-      if comment.resource_type == 'Description'
+      #if comment.resource_type == 'Description'
         @description_comment.push comment
-      end
+      #end
     end
   end
 
@@ -217,13 +217,18 @@ class CategoriesController < ApplicationController
 
   def reparent
 
-
-
     cat = Category.find params[:id]    
     authorize cat
 
-    version = new Version
-    version.
+    version = PaperTrail::Version.new
+    version.item_type = "Category"
+    version.item_id = params[:id]
+    version.event = "update"
+    version.whodunnit = current_user.id    
+    version.object = "---\n" + "id: " + cat.name + "\nparent_id: " + cat.parent_id.to_s + "\nlft: " + cat.lft.to_s + "\nrgt: " + cat.rgt.to_s + "\ndescription: " + cat.description.to_s + "\ndepth: " + cat.depth.to_s + "\nchildren_count: " + cat.children_count.to_s+ "\ncreated_at: " + cat.created_at.to_s
+    #version.object = cat.parent_id
+    #+ "\nparent_id: " + cat.parent_id + "\nlft: " + cat.lft + "\nrgt: " + cat.rgt + "\ndescription: " + cat.description + "\ndepth: " + cat.depth + "\nchildren_count: " + cat.children_count
+    version.save
 
     parent_id = params.require :parent_id
     parent_cat = Category.find parent_id
