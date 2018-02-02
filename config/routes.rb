@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   post 'users/action' => 'users#action'
   post 'users/chooseRole' => 'users#chooseRole'
   post 'categories/edit_description' => 'categories#edit_description'
-  post 'categories/create_comment' => 'categories#create_newcomment'
+  
+ post 'categories/create-comment' => 'categories#create_comment'
+  post 'categories/create-post' => 'categories#create_post'
   resources :categories do
     member do
       post :reparent, :import
@@ -23,9 +25,8 @@ Rails.application.routes.draw do
       get :details
       post :edit__description
     end
-    resources :posts do
-      resources :comments
-    end
+    resources :posts 
+    resources :comments
   end
 
 end

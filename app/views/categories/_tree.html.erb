@@ -1,5 +1,6 @@
 <li data-category-id="<%= tree[:node].id %>">
-  <%= link_to tree[:node].name ,  category_posts_path(category_id:tree[:node].id)  %>
+  
+  <%= tree[:node].name %>
   <% if not tree[:children].empty? %>
   <ul>
     <% tree[:children].each do |n| %>

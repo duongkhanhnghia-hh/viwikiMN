@@ -147,6 +147,38 @@ function view_description(){
     open(r, '_self');
     return false;
 }
+
+function createPost(){
+    document.getElementById("form_post").style.display = "block";
+    document.getElementById("noPost").style.display = "none";
+}
+
+function editPost(){
+    document.getElementById("tittle").value = document.getElementById("post_tittle").innerText;
+    document.getElementById("post").value = document.getElementById("post_body").innerText;
+    document.getElementById("form_post").style.display = "block";
+    document.getElementById("havePost").style.display = "none";
+}
+
+function create_post(category_id){
+    var post = document.getElementById("post").value;
+    var tittle = document.getElementById("tittle").value;
+    if(post != "" && tittle != ""){
+    var arr = [category_id, post, tittle];
+    $.ajax({
+        url : "/categories/create-post",
+        type : "post",
+        data : { data_value: JSON.stringify(arr) }, success: function(){
+            location.reload();
+        }
+        });
+    } else if (tittle == "") {
+        document.getElementById("requireTit").innerHTML = "Vui lòng tạo Title!";
+    }else{
+        document.getElementById("requirePost").innerHTML = "Vui lòng tạo Post!";
+    }
+}
+
 function create_child() {
 		var ref = $(cat_selector).jstree(true),
 				sel = ref.get_selected();
@@ -312,15 +344,21 @@ function choose_view(id){
     }
 
 }
-function create_comment(resource_id){
-    console.log("fjklf");
+function create_comment(category_id){
+    
     var comment = document.getElementById("comment").value;
-    var resource_type = "Description"
-    var arr = [resource_id, comment,resource_type ];
+    if(comment != ""){
+    var arr = [category_id, comment];
+    console.log("aaaaaaa");
     $.ajax({
-        url : "/categories/create_comment",
+        url : "/categories/create-comment",
         type : "post",
-        data : { data_value: JSON.stringify(arr) }
+        data : { data_value: JSON.stringify(arr) }, success: function(){
+            location.reload();
+        }
         });
+    } else{
+        document.getElementById("requireComment").innerHTML = "Vui lòng nhập comment!"
+    }
 }
 

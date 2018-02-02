@@ -2,54 +2,105 @@
 Mô tả
 <% end %>
 <div class="col-md-12">
-  <div class="col-md-1"></div>
-  <div class="portlet box green col-md-8" style="width: 70%">
-    <div class="portlet-title">
-      <div class="caption">
-        <i class="fa fa-gift">
-        </i>
-        <%=@name%>
+   <div class="col-md-1"></div>
+   <div class="portlet box green col-md-8" style="width: 70%">
+      <div class="portlet-title">
+         <div class="caption">
+            <i class="fa fa-gift">
+            </i>
+            <%=@name%>
+         </div>
+         <% if @check %>
+         <div class="actions">
+            <a href="javascript:;" class="btn white" onclick="edit_save(<%=params[:id]%>)">
+            <i class="fa fa-pencil">
+            </i> 
+            <span id="edit_save" >Edit</span>
+            </a>
+         </div>
+         <% end %>
       </div>
-      <% if @check %>
-      <div class="actions">
-        <a href="javascript:;" class="btn white" onclick="edit_save(<%=params[:id]%>)">
-          <i class="fa fa-pencil">
-          </i> 
-          <span id="edit_save" >Edit</span>
-        </a>
+      <div class="portlet-body">
+         <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;" id="description">
+            <div class="scroller" style="height: 200px; overflow: hidden; width: auto;" data-initialized="1">
+               <br> 
+               <span id="description_text"><%=@description%></span>
+            </div>
+            <div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 25px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 175.439px;">
+            </div>
+            <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;">
+            </div>
+         </div>
+         <div class="form-group form-md-line-input form-md-floating-label" id="edit_description" style="display: none;">
+            <textarea class="form-control" rows="8" id="description_area"><%=@description%></textarea>
+         </div>
       </div>
-      <% end %>
-    </div>
-    <div class="portlet-body">
-      <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;" id="description">
-        <div class="scroller" style="height: 200px; overflow: hidden; width: auto;" data-initialized="1">
-          <br> 
-          <span id="description_text"><%=@description%></span>
-        </div>
-        <div class="slimScrollBar" style="background: rgb(187, 187, 187); width: 7px; position: absolute; top: 25px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 175.439px;">
-        </div>
-        <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;">
-        </div>
-      </div>
-      <div class="form-group form-md-line-input form-md-floating-label" id="edit_description" style="display: none;">
-        <textarea class="form-control" rows="8" id="description_area"><%=@description%></textarea>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3"></div>
+   </div>
+   <div class="col-md-3"></div>
 </div>
 <div class="col-md-11">
-  <div class="blog-content-2">
-    <div class="blog-single-content bordered blog-container">
-      <div class="blog-comments" style="background-color: #fff; padding: 5% 5% 5% 5%">
-        <h3 class="sbold blog-comments-title" style="margin: 20px 0px 50px 0px">Comments(<%= @description_comment.length %>)</h3>
-        <%= render "comments/comment_created.html" %>
-        
+   <div class="blog-content-2">
+      <div class="blog-single-content bordered blog-container">
+         <div class="blog-comments" style="background-color: #fff; padding: 5% 5% 5% 5%">
+            <% if @isEntry %>
+            <h3 class="sbold blog-comments-title" style="margin: 20px 0px 50px 0px">Post</h3>
+            <% if @havePost %>
+            <div id="havePost" >
+               <div class="c-comment-list" >
+                  <div class="media">
+                     <div class="media-left">
+                        <a href="#">
+                        <img class="media-object media-avatar" alt="" src="<%= image_url "avatar.png" %>"> 
+                        </a>
+                     </div>
+                     <div class="media-body">
+                        <h4 class="media-heading">
+                           <a href="#" class="username"><%=@post.user.email%></a> 
+                           <br>
+                           <div class="time_comment">
+                              <i class="icon-calendar font-blue"></i>
+                              <span class="c-date"><%= @post.created_at %></span>
+                           </div>
+                           <h1 class="blog-single-head-title" id="post_tittle"><%= @post.title %></h1>
+                        </h4>
+                        <div style="margin-left: 20px;"><div class="blog-single-desc" id="post_body">
+      <%= @post.body %>
+   </div></div>
+   <button class="btn blue btn-block " style="width: 10%; margin-top: 30px;" 
+            onclick="editPost()"> 
+            <i class="fa fa-edit"></i> Sửa
+            </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <% else %>
+            <div id="noPost">
+            <div style="margin-top: -20px; margin-bottom: 20px;color: red; " class="sbold blog-comments-title" >Chưa có post! Vui lòng tạo Post</div>
+      
+            <button class="btn blue btn-block " style="width: 10%;" 
+            onclick="createPost()"> 
+            <i class="fa fa-edit"></i> Viết
+            </button>
+            </div>
+            
+            <% end -%>
+            <form action="#" style="display: none;" id="form_post">
+      <div class="form-group"  >
+         <input type="text" name="" placeholder="Write title here ..." id="tittle">
+         <label style="color: red" id="requireTit"></label>
+         <textarea rows="8" name="message" placeholder="Write post here ..." class="form-control c-square" id="post" required="required"></textarea>
+         <label style="color: red" id="requirePost"></label>
       </div>
-    </div>
-  </div>
+      <div class="form-group">
+         <button type="button" class="btn blue"onclick="create_post(<%=params[:id]%>)">Submit</button>
+      </div>
+   </form>
+            <% end -%>
+            <hr class="hr-description">
+            <h3 class="sbold blog-comments-title" style="margin: 50px 0px 50px 0px">Comments(<%= @description_comment.length %>)</h3>
+            <%= render "comments/comment_created.html" %>
+         </div>
+      </div>
+   </div>
 </div>
-
-
-
-

@@ -1,5 +1,6 @@
 require "export_excel.rb"
 require "import_excel.rb"
+require 'pry'
 
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
@@ -90,23 +91,7 @@ class CategoriesController < ApplicationController
     end 
   end
 
-  def create_newcomment
-    @value = params[:data_value]
-    @value = @value[1,@value.length-2]
-    @arrvalue = Array.new
-    @arrvalue = @value.split(',', 3)
-    @arrvalue[1] = @arrvalue[1][1,@arrvalue[1].length-2]
-    @arrvalue[2] = @arrvalue[2][1,@arrvalue[2].length-2]
-    puts(@arrvalue[0])
-    puts(@arrvalue[1])
-    puts(@arrvalue[2])
-    @comment = Comment.new
-    @comment.body = "hello"
-    @comment.resource_id = 1
-    @comment.resource_type = @arrvalue[2]
-    @comment.user_id = current_user.id
-    @comment.save!
-  end
+
 
   def details
       @category = Category.find(params[:id])  
@@ -122,20 +107,33 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def description
+  
+
+
+ def description
     @categories = Category.all
-    @name = @categories.find(params[:id]).name
+    @category = @categories.find(params[:id])
+    @name = @category.name
     @check =check_edit_description(params[:id])
-    @description = @categories.find(params[:id]).description
+    @isEntry = (@category.children_count==0)
+    @description = @category.description
     @comments = Comment.all
     @users = User.all
     @description_comment = Array.new
+    @havePost = true
+    if @isEntry
+      @post = @category.post
+      if @post == nil
+        @havePost = false
+      end
+    end
     @comments.each do |comment|
-      if comment.resource_type == 'Description'
+      if comment.category_id == @category.id
         @description_comment.push comment
       end
     end
   end
+
 
   def edit__description
 
@@ -177,27 +175,80 @@ class CategoriesController < ApplicationController
     return false
   end
 
+   def create_comment
+    @comment_post = params[:data_value]
+    @comment_post = @comment_post[1..(@comment_post.length-2)]
+    @arrvalue = Array.new
+    @arrvalue = @comment_post.split(',');
+    @arrvalue[1] = @arrvalue[1][1..(@arrvalue[1].length-2)]
+    if @arrvalue[1] != ""
+      @comment = Comment.new
+      @comment.category_id = @arrvalue[0]
+      @comment.body = @arrvalue[1]
+      @comment.user = current_user
+      @comment.save!
+    end
+
+    # filename = ExcelParser.exportData()
+    # flash[:error] = "You must have this role to access this section!"
+      
+    # render :description
+  end
+
+  def create_post
+
+    @post_JS = params[:data_value]
+    @post_JS = @post_JS[1..(@post_JS.length-2)]
+    @arrvalue = Array.new
+    @arrvalue = @post_JS.split(',');
+    @arrvalue[1] = @arrvalue[1][1..(@arrvalue[1].length-2)]
+
+    @arrvalue[2] = @arrvalue[2][1..(@arrvalue[2].length-2)]
+    if @arrvalue[1] != ""
+      if Post.exists?(category_id: @arrvalue[0])
+        @post = Post.find_by(category_id: @arrvalue[0])
+        puts @post
+      else
+        @post = Post.new
+      end
+      @post.category_id = @arrvalue[0]
+      @post.body = @arrvalue[1]
+      @post.title = @arrvalue[2]
+      @post.user = current_user
+      @post.save!
+    end
+
+    # filename = ExcelParser.exportData()
+    # flash[:error] = "You must have this role to access this section!"
+      
+    # render :description
+  end
+
   def create
     @categories = Category.all
     @category = Category.new category_params
+    @parent = @categories.find(@category.parent_id)
+    #binding.pry
+    authorize @category
+    @category.save!
+    @category.move_to_child_of(@parent)
+    @parent.children_count += 1;
+    @parent.save!
     @roles = Role.all
     @role = Role.new
     @role.name = 'editor'
     @role.resource_type = 'Category'
     @role.resource_id = @category.id
-    @parent = @categories.find(@category.parent_id)
-    @parent.children_count = @parent.children_count + 1 
     @role.save!
-    @parent.save!
-    authorize @category
-    @category.save!
     
 
-    filename = ExcelParser.exportData()
-    flash[:error] = "You must have this role to access this section!"
+    # filename = ExcelParser.exportData()
+    # flash[:error] = "You must have this role to access this section!"
       
-    render :showall
+    # render :showall
+
   end
+
 
   def update
     cat = Category.find(params[:id])

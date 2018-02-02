@@ -22,7 +22,9 @@ class CategoryPolicy < ApplicationPolicy
       user.has_role? :admin or user.has_role? :editor, Category.all.find(i)
   end
   def create?
-    user.has_role? :admin or @record.self_and_ancestors.any? { |cat| user.has_role? :editor, cat }
+    #user.has_role? :admin or @record.ancestors.any? { |cat| user.has_role? :editor, cat }
+    user.has_role? :admin or Category.find(@record.parent_id).self_and_ancestors.any? { |cat| user.has_role? :editor, cat }
+
   end
 
   def update?
