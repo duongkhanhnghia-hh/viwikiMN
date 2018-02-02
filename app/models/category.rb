@@ -7,5 +7,5 @@ class Category < ApplicationRecord
   has_many :articles
   has_many :comments
   has_one :post  
-  has_paper_trail
+  # has_paper_trail
 end
