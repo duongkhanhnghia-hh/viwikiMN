@@ -5,7 +5,7 @@ class Category < ApplicationRecord
   include NestedTree  
 
   has_many :articles
-  has_many :comments
-  has_one :post  
+  has_many :comments,  :dependent => :destroy
+  has_one :post,  :dependent => :destroy  
   has_paper_trail
 end
