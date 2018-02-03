@@ -305,13 +305,15 @@ $(document).mousedown(function(event) {
 });
 
 function edit_save(id){
-
-    if (document.getElementById("edit_save").innerHTML == 'Edit'){
-        document.getElementById("edit_save").innerHTML = 'Save';
+    var edit_save = document.getElementById("edit_save");
+    if (edit_save.innerText == 'SỬA'){
+        edit_save.innerText = 'LƯU';
+        document.getElementById("icon_edit").className = "fa fa-save";
         document.getElementById("description").style.display = 'none';
         document.getElementById("edit_description").style.display = 'block';
     }else{
-        document.getElementById("edit_save").innerHTML = 'Edit';
+        edit_save.innerText = 'SỬA';
+        document.getElementById("icon_edit").className = "fa fa-edit";
         document.getElementById("description").style.display = 'block';
         document.getElementById("edit_description").style.display = 'none';
         var description = document.getElementById("description_area").value;

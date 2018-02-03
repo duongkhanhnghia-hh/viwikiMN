@@ -1,25 +1,28 @@
 <% content_for :title do %>
-Mô tả
+
+            <%=@name%>
 <% end %>
+
+<div class="col-md-11">
+   <div class="blog-content-2">
+      <div class="blog-single-content bordered blog-container">
 <div class="col-md-12">
    <div class="col-md-1"></div>
-   <div class="portlet box green col-md-8" style="width: 70%">
-      <div class="portlet-title">
-         <div class="caption">
-            <i class="fa fa-gift">
-            </i>
-            <%=@name%>
-         </div>
-         <% if @check %>
-         <div class="actions">
-            <a href="javascript:;" class="btn white" onclick="edit_save(<%=params[:id]%>)">
-            <i class="fa fa-pencil">
-            </i> 
-            <span id="edit_save" >Edit</span>
-            </a>
-         </div>
-         <% end %>
-      </div>
+   
+   <div class="col-md-3"></div>
+   </div>
+   <div></div>
+   <br>
+
+
+         <div class="blog-comments" style="background-color: #fff; padding: 5% 5% 5% 5%">
+            <h3 class="sbold blog-comments-title" style="margin: 20px 0px 50px 0px">Mô tả</h3>
+   <div class="c-comment-list" >
+                  <div class="media">
+                     <div class="media-body">
+                        <div style="margin-left: 20px;"><div class="blog-single-desc" id="post_body">
+      <div class="portlet box green" style="width: 85%; border: 1px solid #5cd1db" >
+      
       <div class="portlet-body">
          <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;" id="description">
             <div class="scroller" style="height: 200px; overflow: hidden; width: auto;" data-initialized="1">
@@ -36,12 +39,21 @@ Mô tả
          </div>
       </div>
    </div>
-   <div class="col-md-3"></div>
+   </div>
 </div>
-<div class="col-md-11">
-   <div class="blog-content-2">
-      <div class="blog-single-content bordered blog-container">
-         <div class="blog-comments" style="background-color: #fff; padding: 5% 5% 5% 5%">
+<% if @check %>
+         <div class="actions">
+            <button class="btn blue btn-block " style="width: 10%; margin-top: 30px;" 
+            onclick="edit_save(<%=params[:id]%>)" > 
+            <i class="fa fa-edit" id="icon_edit"></i> 
+            <span id="edit_save">Sửa</span>
+            </button>
+         </div>
+         <% end %>
+   
+                     </div>
+                  </div>
+               </div>
             <% if @isEntry %>
             <h3 class="sbold blog-comments-title" style="margin: 20px 0px 50px 0px">Post</h3>
             <% if @havePost %>
