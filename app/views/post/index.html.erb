@@ -1,0 +1,89 @@
+<p id="notice">
+   <%= notice %>
+</p>
+<h1>
+   <%= @category.name %>
+</h1>
+<div style="margin-left: 15px; margin-top: 20px;">
+   <div class="c-comment-list" id="list-coment">
+      <div class="media">
+         <div class="media-left">
+            <a href="#">
+            <img class="media-object media-avatar" alt="" src="<%= image_url "avatar.png" %>"> 
+            </a>
+         </div>
+         <div class="media-body">
+            <h4 class="media-heading" style="margin-top: 10px;">
+               <a href="#" class="username" >
+               <%=@user.email%>
+               </a> 
+               <br>
+               <h1 class="blog-single-head-title">
+               </h1>
+            </h4>
+            <div style="margin-left: 20px;">
+               <div class="blog-single-desc">
+                  <div class="md-editor active" id="1517505640080">
+                     <div class="md-header btn-toolbar">
+                        <div class="btn-group">
+                           <button class="btn-default btn-sm btn" type="button" title="Bold" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdBold" data-hotkey="Ctrl+B">
+                           <span class="glyphicon glyphicon-bold">
+                           </span> </button>
+                           <button class="btn-default btn-sm btn" type="button" title="Italic" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdItalic" data-hotkey="Ctrl+I">
+                           <span class="glyphicon glyphicon-italic">
+                           </span> </button>
+                           <button class="btn-default btn-sm btn" type="button" title="Heading" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdHeading" data-hotkey="Ctrl+H">
+                           <span class="glyphicon glyphicon-header">
+                           </span> </button>
+                        </div>
+                        <div class="btn-group">
+                           <button class="btn-default btn-sm btn" type="button" title="URL/Link" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdUrl" data-hotkey="Ctrl+L">
+                           <span class="glyphicon glyphicon-link">
+                           </span> </button>
+                           <button class="btn-default btn-sm btn" type="button" title="Image" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdImage" data-hotkey="Ctrl+G">
+                           <span class="glyphicon glyphicon-picture">
+                           </span> </button>
+                        </div>
+                        <div class="btn-group">
+                           <button class="btn-default btn-sm btn" type="button" title="Unordered List" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdList" data-hotkey="Ctrl+U">
+                           <span class="glyphicon glyphicon-list">
+                           </span> </button>
+                           <button class="btn-default btn-sm btn" type="button" title="Ordered List" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdListO" data-hotkey="Ctrl+O">
+                           <span class="glyphicon glyphicon-th-list">
+                           </span> </button>
+                           <button class="btn-default btn-sm btn" type="button" title="Code" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdCode" data-hotkey="Ctrl+K">
+                           <span class="glyphicon glyphicon-asterisk">
+                           </span> </button>
+                           <button class="btn-default btn-sm btn" type="button" title="Quote" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdQuote" data-hotkey="Ctrl+Q">
+                           <span class="glyphicon glyphicon-comment">
+                           </span> </button>
+                        </div>
+                        <div class="btn-group">
+                           <button class="btn-sm btn btn-primary" type="button" title="Preview" tabindex="-1" data-provider="bootstrap-markdown" data-handler="bootstrap-markdown-cmdPreview" data-hotkey="Ctrl+P" data-toggle="button">
+                           <span class="glyphicon glyphicon-search">
+                           </span> Preview</button>
+                        </div>
+                        <div class="md-controls">
+                        </div>
+                     </div>
+                     <textarea name="markdown" data-provide="markdown" rows="10" data-error-container="#editor_error" class="md-input" style="resize: none; width: 100%;">
+               </textarea>
+                     <div class="md-fullscreen-controls">
+                     </div>
+                  </div>
+                  <div class="form-actions" style="margin-top: 30px">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <button type="submit" class="btn green">Submit</button>
+                                                                        <button type="button" class="btn default">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<br>
