@@ -20,6 +20,14 @@ function detailroles(){
 	alert("Welcome to Roles Details!                                                                      Admin là người có thể phân quyền cho các tài khoản và chỉnh sửa tất cả các chuyên mục, Editor có quyền chỉnh sửa chuyên mục mà checkbox người đó được tích, User là tài khoản thường không có quyền gì nhưng đã được Admin phân quyền, None là tài khoản mới đăng ký chưa được phân quyền");
 
 }
+window.onload = function() {
+var email = document.getElementById('email').children[0].textContent;
+	if( email.length > 25){
+		index = email.indexOf("@");
+		var emailSub = email.substring(0,25 - (email.length - index)) + "..." + email.substring(index, email.length);
+		document.getElementById('email').children[0].textContent = emailSub; 
+	}
+};
 
     //<% @user_pq[0].roles.push @roles[2] %>
 

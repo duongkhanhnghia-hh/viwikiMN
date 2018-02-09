@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   			attr_accessor :name, :book
 	end
   	def navbar
+      @user = current_user
   		@allCategories = Category.all
   		@book = Array.new
   		@entries = Array.new

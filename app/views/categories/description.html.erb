@@ -60,14 +60,15 @@
             <div id="havePost" >
                <div class="c-comment-list" >
                   <div class="media">
+                     <% link = "/users/" + @post.user.id.to_s%>
                      <div class="media-left">
-                        <a href="#">
+                        <a href=<%=link%>>
                         <img class="media-object media-avatar" alt="" src="<%= image_url "avatar.png" %>"> 
                         </a>
                      </div>
                      <div class="media-body">
                         <h4 class="media-heading">
-                           <a href="#" class="username"><%=@post.user.email%></a> 
+                           <a href=<%=link%> class="username"><%=@post.user.email%></a> 
                            <br>
                            <div class="time_comment">
                               <i class="icon-calendar font-blue"></i>

@@ -21,6 +21,35 @@ class UsersController < ApplicationController
 		@categories = Category.all
 	end
 	
+	def show
+  		@user = User.find(params[:id])
+  		@role = @user.roles[0]
+  		if(@role != nil)
+  			@roleName = @role.name
+  		else
+  			@roleName = "None"
+  		end
+  		@versions = PaperTrail::Version.all
+  		@histories = Array.new
+  		@versions.each do |version|
+  			puts version.whodunnit
+			if(version.whodunnit.to_i == @user.id)
+				if version.item_type == 'Post'
+					@post = Post.find(version.item_id)
+					version.item_id = @post.category.id
+				elsif version.item_type == 'Comment'
+					@comment = Comment.find(version.item_id)
+					version.item_id = @comment.category.id
+				else
+					if !Category.exists?(version.item_id)
+						version.item_id = -1
+					end
+				end
+				@histories.push version
+			end
+  		end	
+  	end
+
 	def edit
 	end
 	
@@ -61,7 +90,8 @@ class UsersController < ApplicationController
 	   		@users.find(@user_id).update(phanquyen: '1')
 		else 
 			@users.find(@user_id).roles.destroy(@roles.find(@roleId.to_s))
-	   end
+	   	end
+	end
 	end
 		  # if @arrvalue[2] == '0'
 	  # 	@users.find(@arrvalue[0].to_s).roles.push @roles.find(@arrvalue[1].to_s)
@@ -74,7 +104,6 @@ class UsersController < ApplicationController
 	  # 		@users.find(@arrvalue[0].to_s).update(phanquyen: '0')
 	  # 	end
 	  # end
-	end
 
 	private
  
@@ -84,4 +113,6 @@ class UsersController < ApplicationController
       		redirect_to '/'
    		end
   	end
+
+  	
 end

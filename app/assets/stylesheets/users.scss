@@ -85,3 +85,68 @@ li {
 }
 .roles-menu li a{
 }
+.profile-usertitle-name {
+    color: #5a7391;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    cursor: pointer;
+}
+.tooltipp{
+	visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    cursor: text;
+    margin-top: 15px;
+    margin-left: -60px;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+.email:hover .tooltipp{
+	 visibility: visible;
+}
+.profile-usertitle-job {
+    text-transform: uppercase;
+    color: #5b9bd1;
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 7px;
+}
+.profile-usertitle {
+    text-align: center;
+    margin-top: 20px;
+}
+.profile-userbuttons {
+    text-align: center;
+    margin-top: 10px;
+}
+.profile-userpic img {
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50%!important;
+    -moz-border-radius: 50%!important;
+    border-radius: 50%!important;
+}
+.profile-usermenu ul li a {
+    color: #93a3b5;
+    font-size: 16px;
+    font-weight: 400;
+}
+.profile-usermenu ul li.active a {
+    color: #5b9bd1;
+    background-color: #f6f9fb;
+    border-left: 2px solid #5b9bd1;
+    margin-left: -2px;
+}
+.profile-sidebar {
+    float: left;
+    width: 400px;
+    margin-right: 20px;
+}

@@ -1,14 +1,15 @@
 <div class="c-comment-list" id="list-coment">
 	<% @description_comment.each  do |comment| %>
+	<% link = "/users/" + comment.user_id.to_s %>
 	<div class="media">
 		<div class="media-left">
-			<a href="#">
+			<a href=<%=link%>>
 				<img class="media-object media-avatar" alt="" src="<%= image_url "avatar.png" %>"> 
 			</a>
 		</div>
 		<div class="media-body">
 			<h4 class="media-heading">
-				<a href="#" class="username"><%=@users.find(comment.user_id).email%></a> 
+				<a href=<%=link%> class="username"><%=@users.find(comment.user_id).email%></a> 
 				<br>
 				<div class="time_comment">
 					<span class="c-date"><%= comment.created_at %></span>
