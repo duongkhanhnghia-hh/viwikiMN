@@ -98,322 +98,46 @@ Thông tin
                <div class="tab-content">
                   <div class="tab-pane active" id="tab_1_1">
                      <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 320px;">
-                        <div class="scroller" style="height: 320px; overflow: hidden; width: auto;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1">
+                        <div class="scroller " style="height: 320px; overflow: auto; width: auto;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2" data-initialized="1" id="style-1">
                            <ul class="feeds">
+                              <% @historiesFeeds.each do |feed| %>
+                              
                               <li>
                                  <div class="col1">
                                     <div class="cont">
+                                       <% if feed.event != 'create' %>
                                        <div class="cont-col1">
                                           <div class="label label-sm label-success">
                                              <i class="fa fa-bell-o"></i>
                                           </div>
                                        </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> You have 4 pending tasks.
-                                             <span class="label label-sm label-info"> Take action
-                                             <i class="fa fa-share"></i>
-                                             </span>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> Just now </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <a href="javascript:;">
-                                    <div class="col1">
-                                       <div class="cont">
-                                          <div class="cont-col1">
-                                             <div class="label label-sm label-success">
-                                                <i class="fa fa-bell-o"></i>
-                                             </div>
-                                          </div>
-                                          <div class="cont-col2">
-                                             <div class="desc"> New version v1.4 just lunched! </div>
-                                          </div>
-                                       </div>
-                                    </div>
-                                    <div class="col2">
-                                       <div class="date"> 20 mins </div>
-                                    </div>
-                                 </a>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
+                                       <% else %>
                                        <div class="cont-col1">
                                           <div class="label label-sm label-danger">
-                                             <i class="fa fa-bolt"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> Database server #12 overloaded. Please fix the issue. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 24 mins </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-info">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> New order received and pending for process. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 30 mins </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-success">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> New payment refund and pending approval. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 40 mins </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-warning">
                                              <i class="fa fa-plus"></i>
                                           </div>
                                        </div>
+                                       <% end -%>
                                        <div class="cont-col2">
-                                          <div class="desc"> New member registered. Pending approval. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 1.5 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-success">
-                                             <i class="fa fa-bell-o"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> Web server hardware needs to be upgraded.
-                                             <span class="label label-sm label-default "> Overdue </span>
+                                          <div class="desc" style="width: 400px"> 
+                                             <% if @users.exists?(feed.whodunnit)%>
+                                             <% link = "/users/" + feed.whodunnit.to_s %>
+                                             <a href=<%=link%>>
+                                                <%=@users.find(feed.whodunnit).email%>
+                                                </a>
+                                             <% else %>
+                                             <a>Người lạ </a>
+                                             <% end -%>
+                                             <%=feed.object%>
                                           </div>
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="col2">
-                                    <div class="date"> 2 hours </div>
+                                 <div class="col2" >
+                                    <div class="date" style="float: right;    width: 150px;"><%=feed.created_at.to_s[0..19]%>  </div>
                                  </div>
                               </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-default">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> Prod01 database server is overloaded 90%. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 3 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-warning">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> New group created. Pending manager review. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 5 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-info">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> Order payment failed. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 18 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-default">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> New application received. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 21 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-info">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> Dev90 web server restarted. Pending overall system check. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 22 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-default">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> New member registered. Pending approval </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 21 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-info">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> L45 Network failure. Schedule maintenance. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 22 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-default">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> Order canceled with failed payment. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 21 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-info">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> Web-A2 clound instance created. Schedule full scan. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 22 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-default">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> Member canceled. Schedule account review. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 21 hours </div>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="col1">
-                                    <div class="cont">
-                                       <div class="cont-col1">
-                                          <div class="label label-sm label-info">
-                                             <i class="fa fa-bullhorn"></i>
-                                          </div>
-                                       </div>
-                                       <div class="cont-col2">
-                                          <div class="desc"> New order received. Please take care of it. </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col2">
-                                    <div class="date"> 22 hours </div>
-                                 </div>
-                              </li>
+                              <% end -%>
                            </ul>
                         </div>
                         <div class="slimScrollBar" style="background: rgb(215, 220, 226); width: 7px; position: absolute; top: 184px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 112.775px;"></div>
@@ -697,15 +421,22 @@ Thông tin
                            <td >
                               <%= history.item_type%> 
                            </td>
-                           <td>
+                           <td style="color: blue">
                               <% if history.item_id != -1 %>
                                  <%= Category.find(history.item_id).name%>
                               <% else %>
                                  Đã xóa
                               <% end -%>
                            </td>
-                           <td> <%=history.event%> </td>
-                           <td> <%=history.object%> </td>
+                           <td style="color: red"> <%=history.event%> </td>
+                           <td>  <% if history.object != nil %>
+                                 <% arrs = history.object.split('<br>') %>
+                                    <% arrs.each do |arr| %>
+                                       <%= arr %>
+                                       <br>
+                                    <% end -%>
+                                 <% end -%>
+                              </td>
                            <td>
                               
                            </td>

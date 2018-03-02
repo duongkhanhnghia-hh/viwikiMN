@@ -364,3 +364,19 @@ function create_comment(category_id){
     }
 }
 
+function chooseViewEntry(type) {
+        var i = document.createElement(i);
+        i.className = "fa fa-angle-down";
+    if (type == 0){
+        document.getElementById("btnChooseEntry").innerText = "Xem Theo Quyển ";
+        document.getElementById("btnChooseEntry").appendChild(i);
+        document.getElementById("entries0").style.display = "table-row-group";
+        document.getElementById("entries1").style.display = "none";
+    }else if (type == 1) {
+        document.getElementById("btnChooseEntry").innerText = "Xem Theo Vần ";
+        document.getElementById("btnChooseEntry").appendChild(i);
+        document.getElementById("entries0").style.display = "none";
+        document.getElementById("entries1").style.display = "table-row-group";
+    }
+}
+

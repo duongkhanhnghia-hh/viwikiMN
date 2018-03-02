@@ -1,6 +1,7 @@
-<li data-category-id="<%= tree[:node].id %>">
-  
-  <%= tree[:node].name %>
+<% if params[:id].to_i >= tree[:node].lft.to_i and params[:id].to_i <= tree[:node].rgt.to_i %>
+  <li data-category-id="<%= tree[:node].id %>">
+  	<%= tree[:node].name %>
+  	<% end %>
   <% if not tree[:children].empty? %>
   <ul>
     <% tree[:children].each do |n| %>

@@ -31,3 +31,8 @@ var email = document.getElementById('email').children[0].textContent;
 
     //<% @user_pq[0].roles.push @roles[2] %>
 
+$(document).ready(function () {
+          if (!$.browser.webkit) {
+              $('.slimScrollDiv').html('<p>Sorry! Non webkit users. :(</p>');
+          }
+      });

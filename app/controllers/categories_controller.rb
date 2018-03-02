@@ -30,10 +30,12 @@ class CategoriesController < ApplicationController
       @categories = scope.nested_tree
       @categories.each do |scp|
         @category_tmp = scp[:node]
+        puts @category_tmp.id.to_s + " " + params[:id].to_s
       while @category_tmp.parent_id != nil
+        puts @category_tmp.id.to_s + " " + params[:id].to_s
         @category_tmp = @categoriesDB.find(@category_tmp.parent_id)
       end
-      if @category_tmp.id == params[:id].to_i
+      if  @category_tmp.id == params[:id].to_i
         @categories_tmp.push scp
       end
       end
@@ -53,7 +55,34 @@ class CategoriesController < ApplicationController
     end
     @entries_list.sort_by! { |m| m }
     end
-    if scope == nil or @categories.empty?
+    # puts "================"
+    # @cr_category = Category.find(params[:id])
+    # @hasRole = false
+    # @categoriesNT = scope.nested_tree
+    # @categoriesNT.each do |scp|
+    #   puts scp[:node].id.to_s + " " + @cr_category.id.to_s
+    #   if scp[:node].id == @cr_category.id
+    #     if @categories.empty?
+    #         @categories.push scp
+    #       end
+    #     @hasRole = true
+    #   end
+    #   puts @hasRole
+    #   while @cr_category.parent_id != nil
+    #     @cr_category= @categoriesDB.find(@cr_category.parent_id)
+    #   puts scp[:node].id.to_s + " " + @cr_category.id.to_s
+    #     if scp[:node].id == @cr_category.id
+    #       if @categories.empty?
+    #         @categories.push scp
+    #       end
+    #       puts scp[:node].id
+    #       @hasRole = true
+    #       break
+    #     end
+    #   end
+    # end
+    # puts @hasRole
+    if scope == nil or (@categories.empty? and !@hasRole)
       flash[:error] = "You must have this role to access this section!"
       redirect_to '/'
     end
@@ -193,6 +222,10 @@ class CategoriesController < ApplicationController
     # flash[:error] = "You must have this role to access this section!"
       
     # render :description
+  end
+
+  def entry
+    render "application/navbar"
   end
 
   def create_post

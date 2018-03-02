@@ -11,7 +11,7 @@
 					 Mô tả
 				</button>
 				<div id="categories">
-					<ul><% @categories.each do |cat| %>
+					<ul><% @categories.each do |cat| %>	
 						<%= render partial: 'tree', object: cat -%>
 						<% end %></ul>
 					</div>
