@@ -1,0 +1,68 @@
+<% content_for :title do %>
+Mục từ
+<% end %>
+<div class="portlet box green">
+   <div class="portlet-title">
+      <div class="caption">
+         <i class="fa fa-table"></i>Bảng mục từ
+      </div>
+   </div>
+   <div class="portlet-body" style="display: block;min-height: 300px;">
+            <div class="btn-group">
+               <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="width: 200px" id="btnChooseEntry">
+                  Xem theo quyển
+               <i class="fa fa-angle-down"></i>
+               </button>
+               <ul class="dropdown-menu" role="menu" style="width: 200px">
+                  <li aria-haspopup="true" >
+                     <a href="javascript:;" onclick="chooseViewEntry(0)" class="nav-link nav-toggle ">
+                     <i class="fa fa-book"></i> Xem theo quyển
+                     </a>
+                  </li>
+                  <li aria-haspopup="true" >
+                     <a href="javascript:;" onclick="chooseViewEntry(1)" class="nav-link nav-toggle ">
+                     <i class="fa fa-sort-alpha-asc"></i> Xem theo vần
+                     </a>
+                  </li>
+               </ul>
+            </div>
+      <div class="table-scrollable" style="min-height: 300px">
+         <table class="table table-striped table-hover" >
+
+            <thead>
+               <tr>
+                  <th> # </th>
+                  <th> Tên mục từ </th>
+                  <th style="width: 40%"> Quyển </th>
+               </tr>
+            </thead>
+            <tbody id="entries0">
+               <% count = 1  %>
+               <% @book.each do |book| %>
+               <% @entries.each do |entry| %>
+               <tr>
+                  <% if entry.book == book.name%>
+                  <td> <%= count %> </td>
+                  <td> <%= entry.name %> </td>
+                  <td> <%= book.name %> </td>
+                  <% count+=1%>
+                  <% end %> 
+                  <% end %>
+                  <% end %>
+               </tr>
+            </tbody>
+            <tbody id="entries1" style="display: none;">
+               <% count = 1  %>
+               <% @entries.each do |entry| %>
+               <tr>
+                  <td> <%= count %> </td>
+                  <td> <%= entry.name %> </td>
+                  <td> <%= entry.book %> </td>
+                  <% count+=1%>
+                  <% end %> 
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
